@@ -1,0 +1,144 @@
+---
+title: "Fundamental equations of Quantum Mechanics (WIP)"
+tags: [
+  "Momentum operator",
+  "Hamiltonian operator",
+  ]
+---
+
+import Equation from "components/equation"
+
+1. [Schrödinger representation](#Schrodinger-picture)
+1. [Heisenberg representation](#Heisenberg-picture)
+
+<!--
+<Equation
+  label=""
+  latex=""
+  notes={false}
+  notesLabel="more"
+/>
+-->
+
+<!--
+<Equation
+  label=""
+  latex=""
+/>
+-->
+
+---
+
+<a className="anchor" name="Schrodinger-picture"></a>
+
+## Schrödinger representation
+
+In the Schrödinger picture, state vectors evolve in time but operators are constant.
+
+<Equation
+  label="Momentum operator"
+  latex="\hat{p}=-i\hbar\nabla"
+/>
+
+<Equation
+  label="Hamiltonian operator"
+  latex="\hat{H}=-\dfrac{\hbar^2}{2m}\nabla^2+V(\mathbf{r})"
+/>
+
+<Equation
+  label="Time-independent Schrödinger equation (TISE)"
+  latex="\hat{H}\psi_n(\mathbf{r}) = E_n\psi_n(\mathbf{r})"
+/>
+
+<Equation
+  label="Time-dependent Schrödinger equation (TDSE)"
+  latex="\hat{H}\Psi(\mathbf{r},t) = i\hbar\dfrac{d\Psi(\mathbf{r},t)}{dt}"
+/>
+
+* <Equation
+  label="General solution to the TDSE"
+  latex="\Psi(\mathbf{r},t)=\sum\limits_{n=1}^\infty c_n\psi_n(\mathbf{r})e^{-i{E_n}t/\hbar}"
+/>
+
+* <Equation
+  label="Probability of measuring eigenvalue $E_n$"
+  latex="|c_n|^2 = |⟨f_n|\Psi⟩|^2"
+/>
+
+<!--what is f_n?-->
+
+<Equation
+  label="Expectation value of an operator"
+  latex="⟨\hat{Q}⟩ = ⟨\Psi|\hat{Q}|\Psi⟩  = \int{\Psi^* \hat{Q} \Psi dx}  = \sum{{E_n}{|c_n|^2}}"
+/>
+
+<Equation
+  label="Time dependence of expectation value"
+  latex="\dfrac{d⟨\hat{Q}⟩}{dt} = \dfrac{i}{\hbar} ⟨[\hat{H}, \hat{Q}]⟩ + \bigg⟨ \dfrac{\partial \hat{Q}}{\partial t} \bigg⟩"
+/>
+
+<Equation
+  label="Variance"
+  latex="\sigma_Q^2 = ⟨(\hat{Q}-⟨\hat{Q}⟩)^2⟩ = ⟨\hat{Q}^2⟩ - ⟨\hat{Q}⟩^2"
+/>
+
+<Equation
+  label="Standard deviation"
+  latex="\sigma_Q = \sqrt{\sigma_Q^2}"
+/>
+
+<Equation
+  label="General uncertainty principle"
+  latex="\sigma_A \sigma_B \geqslant |\tfrac{1}{2i}⟨[\hat{A}, \hat{B}]⟩|"
+/>
+
+* <Equation
+  label="Heisenberg uncertainty principle"
+  latex="\sigma_x \sigma_p \geqslant \tfrac{\hbar}{2}"
+/>
+
+* <Equation
+  label="Energy-time uncertainty principle"
+  latex="\Delta E \Delta t \geqslant \tfrac{\hbar}{2}"
+/>
+
+---
+
+<a className="anchor" name="Heisenberg-picture"></a>
+
+## Heisenberg representation
+
+In the Heisenberg picture, operators evolve in time but state vectors are constant.
+
+<Equation
+  label="Density operator"
+  latex="\hat{\rho}(t) = \sum\limits_k {{p_k}{\rho _k}(t)}"
+  notes={true}
+  notesLabel=""
+/>
+
+${\text{Tr}} \hat{\rho}  = 1$
+
+* <Equation
+  label=""
+  latex="\rho_k(t) = |\psi_k(t)⟩⟨\psi_k(t)|"
+/>
+
+* <Equation
+  label=""
+  latex="p_k \text{ is probability of being in state } |\psi_k(t)⟩"
+/>
+
+<Equation
+  label="Ensemble average"
+  latex="⟨\hat{A}⟩(t) = {\text{Tr}}\{{\hat{\rho}(t)\hat{A}}\}"
+/>
+
+<Equation
+  label="Time-evolution of density operator"
+  latex="i\hbar \dfrac{d\hat{\rho}(t)}{dt} = [{\hat{H}(t), \hat{\rho}(t)}]"
+/>
+
+<!--
+(add canonical commutation relations) \\
+-->

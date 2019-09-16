@@ -1,0 +1,36 @@
+---
+title: "Vector identities (WIP)"
+tags: ["gradient", "divergence", "curl"]
+---
+
+<equation wikipedialink="https://en.wikipedia.org/wiki/Particle_in_a_box" hyperphysicslink="http://hyperphysics.phy-astr.gsu.edu/hbase/quantum/pbox.html">$\nabla(\varphi\psi)=\varphi\nabla\psi+\psi\nabla\varphi$</equation>
+
+<equation wikipedialink="https://en.wikipedia.org/wiki/Particle_in_a_box" hyperphysicslink="http://hyperphysics.phy-astr.gsu.edu/hbase/quantum/pbox.html">$\nabla(\varphi\psi)=\varphi\nabla\psi+\psi\nabla\varphi$</equation>
+
+## Differential vector identities
+
+1. $\nabla(\varphi\psi)=\varphi\nabla\psi+\psi\nabla\varphi$
+1. $\nabla(\mathbf{a}\cdot\mathbf{b})=(\mathbf{a}\cdot\nabla)\mathbf{b}+(\mathbf{b}\cdot\nabla)\mathbf{a}+\mathbf{a}\times(\nabla\times\mathbf{b})+\mathbf{b}\times(\nabla\times\mathbf{a})$
+1. $\nabla\cdot(\varphi\mathbf{a})=\mathbf{a}\cdot\nabla\varphi+\varphi\nabla\cdot\mathbf{a}$
+1. $\nabla\cdot(\mathbf{a}\times\mathbf{b})=\mathbf{b}\cdot(\nabla\times\mathbf{a})-\mathbf{a}\cdot(\nabla\times\mathbf{b})$
+1. $\nabla\times(\varphi\mathbf{a})=\nabla\varphi\times\mathbf{a}+\varphi\nabla\times\mathbf{a}$
+1. $\nabla\times(\mathbf{a}\times\mathbf{b})=\mathbf{a}(\nabla\cdot\mathbf{b})-\mathbf{b}(\nabla\cdot\mathbf{a})+(\mathbf{b}\cdot\nabla)\mathbf{a}-(\mathbf{a}\cdot\nabla)\mathbf{b}$
+1. $\nabla\times\nabla\varphi=0$
+1. $\nabla\cdot(\nabla\times\mathbf{a})=0$
+1. $\nabla\times(\nabla\times\mathbf{a})=\nabla(\nabla\cdot\mathbf{a})-{\nabla^2}\mathbf{a}$
+
+## Integral vector identities
+
+1. $\int_{\mathbf{a}}^{\mathbf{b}} (\nabla\varphi)\cdot d\mathbf{l} = \varphi(\mathbf{b})-\varphi(\mathbf{a})$ (Gradient theorem)
+1. $\int_V \nabla\cdot\mathbf{A}\,dv = \int_S\mathbf{A}\cdot d\mathbf{a} $
+1. $\int_V {\nabla \varphi } \,dv = \int_S {\varphi \,d{\mathbf{a}}} $
+1. $\int_V {\nabla  \times {\mathbf{A}}} \,dv = \int_S {d{\mathbf{a}} \times {\mathbf{A}}} $ (Divergence/Gauss' theorem)
+1. $\int_V (\psi\nabla^2\varphi-\varphi\nabla^2\psi)\,dv = \int_S(\psi\nabla\varphi-\varphi\nabla\psi)\cdot d\mathbf{a}$
+1. $\int_V (\psi\nabla^2\varphi+\nabla\psi\cdot\nabla\varphi)\,dv = \int_S\psi\nabla\varphi\cdot d\mathbf{a}$ (Green's theorem)
+1. $\int_S {(\nabla  \times {\mathbf{A}}) \cdot d{\mathbf{a}}}  = \oint_C {{\mathbf{A}} \cdot d{\mathbf{l}}} $
+1. $\int_S {d{\mathbf{a}} \times \nabla \varphi }  = \oint_C {\varphi \,d{\mathbf{l}}} $
+1. $\int_S (d\mathbf{a}\times\nabla)\times\mathbf{A} = \oint_C d\mathbf{l}\times\mathbf{A}$ (Curl/Stokes' theorem)
+
+*See also:*
+
+[Trigonometric identities](/Mathematics/Trigonometry)

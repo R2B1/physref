@@ -1,0 +1,53 @@
+@font-face {
+  font-family: "Roboto-light";
+  src: url("../fonts/Roboto-Light.ttf");
+}
+
+@font-face {
+  font-family: "Roboto-medium";
+  src: url("../fonts/Roboto-Medium.ttf");
+}
+
+@font-face {
+  font-family: "Roboto-regular";
+  src: url("../fonts/Roboto-Regular.ttf");
+}
+
+@font-face {
+  font-family: "Roboto-bold";
+  src: url("../fonts/Roboto-Bold.ttf");
+}
+
+@font-face {
+  font-family: "MJ-TeX-main-regular";
+  src: url("../fonts/MathJax_Main-Regular.woff");
+}
+
+@font-face {
+  font-family: "MJ-TeX-main-bold";
+  src: url("../fonts/MathJax_Main-Bold.woff");
+}
+
+@font-face {
+  font-family: "MJ-TeX-main-italic";
+  src: url("../fonts/MathJax_Main-Italic.woff");
+}
+
+* {
+  box-sizing: border-box;
+}
+
+// 1rem = 10px
+html {
+  font-size: 62.5%;
+}
+
+body {
+  margin: 0;
+  counter-reset: section-counter;
+}
+
+// Target button itself when inner elements are clicked
+button > * {
+  pointer-events: none;
+}

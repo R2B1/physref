@@ -1,0 +1,66 @@
+---
+title: "Accelerated (noninertial) coordinate systems (WIP)"
+tags: ["Coriolis force", "Centrifugal force"]
+---
+
+import Equation from "components/equation"
+import EquationRef from "components/equationRef"
+import Figures from "components/figures"
+import Label from "components/label"
+
+<!-- <Equation
+  label=""
+  latex=""
+/> -->
+
+<Figures
+  filenames={[
+    "cm-accel-coord-system",
+  ]}
+  captions={[
+    "Translated and rotated coordinate system",
+  ]}
+  alts={[
+    "Translated and rotated coordinate system",
+  ]}
+/>
+
+## General equation of motion for a noninertial observer
+
+<Equation
+  label="General EoM"
+  latex="m\ddot{\mathbf{r}} = \mathbf{F}_{\text{ext}} - m\ddot{\mathbf{s}} + \mathbf{F}_{\text{Cor}} + \mathbf{F}_{\text{cf}} + \mathbf{F}_{\alpha}"
+  notes={true}
+/>
+
+EoM for a particle $m$ as seen by an observer fixed in the translating and rotating (body-fixed) frame.
+
+* $\mathbf{F}_{\text{ext}} = m\ddot{\mathbf{r}}_0$ <Label>EXTERNAL FORCE</Label>
+* $\mathbf{F}_{\text{Cor}}=-2m\boldsymbol{\omega}\times\dot{\mathbf{r}}$ <Label>Coriolis force</Label>
+* $\mathbf{F}_{\text{cf}}=-m\boldsymbol{\omega}\times(\boldsymbol{\omega}\times\mathbf{r})$ <Label>Centrifugal force</Label>
+* $\mathbf{F}_{\alpha}=-m\dot{\boldsymbol{\omega}}\times\mathbf{r}$ <Label>Euler force</Label>
+
+## Approximate equation of motion on the surface of Earth
+
+<Equation
+  label="EoM on Earth"
+  latex="m\ddot{\mathbf{r}}_{\text{E}} = \mathbf{F}_{\text{g}}+\mathbf{F}_{\text{Cor}}+\mathbf{F}_{\text{cf}}+{\mathbf{F}}'"
+/>
+
+<Equation
+  label="Gravitational force"
+  latex="\mathbf{F}_{\text{g}}=-GM_{\text{E}} m\hat{\mathbf{r}}/r^2"
+/>
+
+${\mathbf{F}}'$ represents additional terrestrial forces (e.g., a supporting string)
+
+<Equation
+  label="Earth's angular frequency"
+  latex="\omega_e \approx 7.29 \times 10^{-5} \text{s}^{-1}"
+/>
+
+---
+
+## Resources
+
+* [Wikipedia](https://en.wikipedia.org/wiki/Rotating_reference_frame)

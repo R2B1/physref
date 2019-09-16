@@ -1,0 +1,289 @@
+---
+title: "Central force motion"
+tags: [
+  "Bound orbits",
+  "Eccentricity",
+  "Effective potential",
+  "Elastic scattering cross section",
+  "Elliptic orbits",
+  "Focus",
+  "Gravitational potential",
+  "Hyperbolic orbits",
+  "Kepler's Laws", 
+  "Orbital motion", 
+  "Scattering",
+  "Semimajor/semiminor axis",
+]
+---
+
+import Equation from "components/equation"
+import EquationRef from "components/equationRef"
+import Figures from "components/figures"
+
+## General central force motion
+
+<Figures
+  filenames={[
+    "cm-central-force-problem",
+    "cm-effective-potential",
+  ]}
+  captions={[
+    "The central-force problem",
+    "Effective potential in an attractive 1/r potential",
+  ]}
+  alts={[
+    "The central-force problem",
+    "Effective potential in an attractive 1/r potential",
+  ]}
+/>
+
+<Equation
+  label="Central force"
+  latex="\mathbf{F}(\mathbf{r}) = \hat{\mathbf{r}}f(r) = -\hat{\mathbf{r}} \dfrac{dV(r)}{dr}"
+/>
+
+<Equation
+  label="Lagrangian"
+  latex="L = \tfrac{1}{2} \mu (\dot{r}^2 + r^2\dot{\varphi}^2) + V(r)"
+/>
+
+<Equation
+  label="Reduced mass"
+  latex="\mu \equiv \dfrac{m_1 m_2}{m_1 + m_2}"
+  notes
+/>
+
+* Equivalently, $\mu^{-1} = m_1^{-1} + m_2^{-1}$.
+* The results on this page are for the equivalent one-body problem (as shown in Fig. 1) of the central force motion of two bodies $m_1$ and $m_2$ about their center of mass. Thus $m$ is replaced by $\mu$.
+
+<Equation
+  label="Orbital EoM"
+  latex="\displaystyle\varphi(r) = \frac{\pm l}{\sqrt{2\mu}}\int^{r'}{\dfrac{dr}{r^2(E-V_{\text{eff}})}} + \varphi_0"
+  important={true}
+  reference="orbital-eom"
+/>
+
+<Equation
+  label="Effective potential"
+  latex="V_{\text{eff}}(r) = V(r) + \dfrac{l^2}{2 \mu r^2}"
+/>
+
+<Equation
+  label="Angular momentum"
+  latex="l = |\mathbf{r} \times \mathbf{p}| = \mu r^2 \dot{\varphi} = \text{constant}"
+/>
+
+<Equation
+  label="Energy"
+  latex="E = \tfrac{1}{2} \mu (\dot{r}^2+r^2\dot{\varphi}^2) + V(r) = \text{constant}"
+/>
+
+<Equation
+  label="Differential EoM"
+  latex="\displaystyle\frac{d^2}{d\theta^2} \left(\frac{1}{r}\right) + \frac{1}{r}=-\frac{\mu r^2}{l^2}F(r)"
+  notes={true}
+/>
+
+Differential form of <EquationRef reference="orbital-eom" />.
+
+## Gravitational (inverse-square) force
+
+<Equation
+  label="Gravitational potential"
+  latex="V(r) = - \dfrac{\gamma \mu}{r}"
+/>
+
+<Equation
+  label=""
+  latex="\gamma \equiv G(m_1 + m_2)"
+/>
+
+<Equation
+  label="Solution of orbital EoM"
+  latex="\dfrac{1}{r} = C(1-\varepsilon \cos{\varphi})"
+  notes={true}
+  important={true}
+  reference="orbital-eom-solution"
+/>
+
+* Solution of <EquationRef reference="orbital-eom" />.
+* This is the equation of a conic section with one focus at the origin, where $\varphi_0=0$ by convention.
+* Keep in mind that here $E$ and $l$ are the energy and angular momentum in the center-of-mass frame.
+
+<!--
+<div>
+  <p>This is the equation of a conic section with one focus at the origin.</p>
+  <p>We set <Equation>{'\\varphi_0=0'}</Equation> by convention.</p>
+</div>
+-->
+
+<Equation
+  label=""
+  latex="C \equiv \dfrac{\gamma \mu^2}{l^2}"
+/>
+
+<Equation
+  label="Eccentricity"
+  latex="\varepsilon = \left(1 + \dfrac{2El^2}{\mu^3 \gamma^2} \right)^{1/2}"
+/>
+
+Eccentricity | Energy | Orbit
+:---|:---|:---
+$\varepsilon>1$ | $E>0$ | Hyperbola
+$\varepsilon=1$ | $E=0$ | Parabola
+$0<\varepsilon<1$ | $V_{\text{min}}<E<0$ | Ellipse
+$\varepsilon=0$ | $E=V_{\text{min}}$ | Circle
+
+## Bound orbits
+
+Bound, elliptic orbits ($E < 0$) in a gravitational potential.
+
+<Figures
+  filenames={[
+    "cm-elliptic-orbit",
+  ]}
+  captions={[
+    "Bound (elliptic) orbit",
+  ]}
+  alts={[
+    "Bound (elliptic) orbit",
+  ]}
+/>
+
+<Equation
+  label="Semimajor axis"
+  latex="a = \dfrac{1}{C(1-\varepsilon^2)} = -\dfrac{\mu \gamma}{2E} = \dfrac{d+d'}{2}"
+/>
+
+<Equation
+  label="Semiminor axis"
+  latex="b = a \sqrt{1-\varepsilon^2} = \sqrt{a^2-f^2}"
+/>
+
+<Equation
+  label="Focus"
+  latex="f = \varepsilon a"
+/>
+
+### Kepler's laws
+
+<Equation
+  label="1st Law"
+  latex="r^{-1}=C(1-\varepsilon \cos{\varphi})"
+  notes={true}
+/>
+
+*Planets move in elliptical orbits about the Sun with the Sun at one focus.*
+
+<Equation
+  label="2nd Law"
+  latex="\dfrac{dA}{dt} = \dfrac{l}{2\mu} = \text{constant}"
+  notes={true}
+/>
+
+*The area per unit time swept out by a radius vector from the Sun to a planet is constant.*
+
+<Equation
+  label="3rd Law"
+  latex="\tau^2 = \dfrac{4 \pi^2 a^3}{\gamma} \cong \dfrac{4 \pi^2 a^3}{Gm_{\text{Sun}}}"
+  notes={true}
+/>
+
+*The square of a planet's period is proportional to the cube of the major axis of the planet's orbit*
+
+## Scattering
+
+Unbounded, hyperbolic orbits ($E > 0$) in a gravitational potential.
+
+<Figures
+  filenames={[
+    "cm-scattering-attractive",
+    "cm-scattering-repulsive",
+  ]}
+  captions={[
+    "Scattering from an attractive central potential",
+    "Scattering from a repulsive central potential",
+  ]}
+  alts={[
+    "Scattering from an attractive central potential",
+    "Scattering from a repulsive central potential",
+  ]}
+/>
+
+<Equation
+  label="Energy"
+  latex="E = \tfrac{1}{2} \mu v_0^2"
+  notes={true}
+/>
+
+* Energy in the center-of-mass frame.
+* $v_0$ is the relative speed of particles approaching from infinity.
+
+<Equation
+  label="Angular momentum"
+  latex="l = \mu v_0 b"
+  notes={true}
+/>
+
+* Angular momentum in the center-of-mass frame.
+* $b$ is called the impact parameter and is the distance of closest approach if the trajectory were undeflected.
+
+<Equation
+  label="Eccentricity"
+  latex="\varepsilon = \bigg[1 + \bigg(\dfrac{v_0^2 b}{\gamma}\bigg)^2 \bigg]^{1/2}"
+/>
+
+<Equation
+  label="Distance of closest approach"
+  latex="r_{\text{min}} = b \left( \dfrac{\varepsilon - 1}{\varepsilon + 1} \right)^{1/2}"
+/>
+
+<Equation
+  label="Deflection angle"
+  latex="\theta = 2 \arctan{\dfrac{\gamma}{v_0^2 b}}"
+/>
+
+### General scattering orbits
+
+<Equation
+  label="Deflection angle"
+  latex="\theta = |\pi - 2\varphi_m|"
+/>
+
+<Equation
+  label="Angle to $r_{\text{min}}$"
+  latex="\displaystyle \varphi_m = \dfrac{l}{\sqrt{2\mu}}\int_{\infty}^{r_{\text{min}}}{\dfrac{dr}{r^2(E-V_{\text{eff}})}} + \pi"
+/>
+
+<!-- latex="\displaystyle \varphi_m = l \int_{\infty}^{r_\text{min}} dr r^{-2} \left[ 2\mu E - 2\mu V(r) - \dfrac{l^2}{r^2} \right]^{-1/2} + \pi" -->
+
+<Equation
+  label="Distance of closest approach"
+  latex="E-V(r_{\text{min}}) = \dfrac{l^2}{2 \mu r_{\text{min}}^2}"
+  notes={true}
+/>
+
+$r_{\text{min}}$ is the root of the equation.
+
+### Cross section
+
+<Equation
+  label="Differential elastic scattering cross section"
+  latex="d\sigma_{\text{el}}=\bigl(\tfrac{d\sigma}{d\Omega}\bigr)_{\text{el}}d\Omega=2\pi b\,db \Rightarrow \bigl(\tfrac{d\sigma}{d\Omega}\bigr)_{\text{el}}=\tfrac{b}{\sin{\theta}}\bigr|\tfrac{db}{d\theta}\bigl|"
+/>
+
+<Equation
+  label="Solid angle"
+  latex="d\Omega=\tfrac{dA}{R^2}=\sin\theta\,d\theta d\varphi"
+/>
+
+<Equation
+  label="Total elastic scattering cross section"
+  latex="\sigma_T=\int d\sigma_{\text{el}}"
+/>
+
+---
+
+### Resources
+
+* [Wikipedia](https://en.wikipedia.org/wiki/Classical_central-force_problem)

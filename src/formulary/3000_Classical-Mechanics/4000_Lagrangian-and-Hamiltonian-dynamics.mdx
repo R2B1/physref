@@ -1,0 +1,72 @@
+---
+title: "Lagrangian & Hamiltonian dynamics (WIP)"
+tags: ["Canonical momentum", "Poisson brackets"]
+---
+
+import Equation from "components/equation"
+
+<!--
+<Equation
+  label=""
+  latex=""
+/>
+-->
+
+## Lagrangian dynamics
+
+<Equation
+  label="Lagrangian"
+  latex="L(q_i,\dot{q}_i,t)\equiv T-V"
+  notes={true}
+/>
+
+* $T(q_i,\dot{q}_i,t)$ is the total kinetic energy
+* $V(q_i,t)$ is the potential energy with only conservative forces
+* $q_i$ and $\dot{q}_i$ are the generalized coordinates and velocities
+* $i=1,\dotsc,n-k$, where $n$ is the number of degrees of freedom and $k$ is the number of holonomic constraints
+
+<Equation
+  label="Canonical momentum"
+  latex="p_i\equiv\dfrac{\partial L}{\partial \dot{q}_i}"
+/>
+
+<Equation
+  label="Lagrange's equations of motion"
+  latex="\dfrac{\partial L}{\partial q_i} = \dfrac{d}{dt}\dfrac{\partial L}{\partial\dot{q}_i} = \dot{p}_i"
+/>
+
+<Equation
+  label="Lagrange's equations of motion with undetermined multipliers"
+  latex="\dfrac{d}{dt}\dfrac{\partial L}{\partial\dot{q}_i} - \dfrac{\partial L}{\partial q_i} = Q_i = \sum_k \lambda_k \dfrac{\partial f_k}{\partial q_i}"
+/>
+
+<!--
+\textbf{Lagrangian} \indnt\bull $L(q_i,\dot{q}_i,t)\equiv T-V$ \\
+Canonical momentum \indnt\bull $p_i\equiv\tfrac{\partial L}{\partial \dot{q}_i}$ \\
+Euler-Lagrange EOMs \indnt\bull $\tfrac{\partial L}{\partial q_i}=\tfrac{d}{dt}\tfrac{\partial L}{\partial\dot{q}_i}=\dot{p}_i$\\
+Euler-Lagrange EOMs with undetermined multipliers \\
+\indnt\bull $\tfrac{d}{dt}\tfrac{\partial L}{\partial\dot{q}_i} - \tfrac{\partial L}{\partial q_i} = Q_i = \sum_k \lambda_k \tfrac{\partial f_k}{\partial q_i}$ \\
+\indnt\indnt where $Q_i$ are the forces of constraint, \\
+\indnt\indnt and $f_k(q_1,\dotsc,q_n,t)=0$ are the holonomic constraints \\
+\vspace{-6 pt}
+
+\textbf{Hamiltonian} $\rightarrow$ Legendre transform from $(q,\dot{q},t)$ to $(p,q,t)$\\
+\indnt\bull $H(p_i,q_i,t)\equiv\sum_i p_i\dot{q}_i-L(q_i,\dot{q}_i,t)$ \\
+Hamilton's EOMs \indnt\bull $\tfrac{\partial H}{\partial p_i}=\dot{q}_i$ \indnt\bull $\tfrac{\partial H}{\partial q_i}=-\dot{p}_i$ \\
+Properties of $L$ and $H$: \\
+\indnt\bull If $\tfrac{\partial L}{\partial t} = 0 ~\rightarrow~ \tfrac{dH}{dt} = 0 ~\rightarrow~ H =\text{constant}$ \\
+\indnt\bull If $\tfrac{\partial L}{\partial t} = 0 \text{ and } \tfrac{\partial x_i}{\partial t} = 0 ~\rightarrow~ H=T+U=E=\text{constant}$ \\
+\vspace{-6 pt}
+
+\textbf{Poisson brackets} \bull $\{F,G\} \equiv \sum_i \bigr( \tfrac{\partial F}{\partial q_i}\tfrac{\partial G}{\partial p_i} - \tfrac{\partial F}{\partial p_i}\tfrac{\partial G}{\partial q_i} \bigl) = -\{G,F\}$\\
+\indnt where $F$ and $G$ are functions of $(q_1\,,\dotsc,\,q_n \,;\, p_1\,,\dotsc,\,p_n \,;\, t)$\\
+Poisson brackets with the generalized coordinates and momenta\\
+\indnt\bull $\{p_i,q_j\}=-\delta_{ij}$
+\indnt\bull $\{p_i,p_j\}=\{q_i,q_j\}=0$\\
+Poisson brackets with the hamiltonian \bull $\tfrac{dF}{dt}=-\{H,F\}+\tfrac{\partial F}{\partial t}$\\
+\indnt\bull $\dot{q}_i=-\{H,q_i\}=\tfrac{\partial H}{\partial p_i}$
+\indnt\bull $\dot{p}_i=-\{H,q_i\}=-\tfrac{\partial H}{\partial q_i}$\\
+\vspace{-6 pt}
+
+\textbf{Hamilton-Jacobi theory}\\
+-->

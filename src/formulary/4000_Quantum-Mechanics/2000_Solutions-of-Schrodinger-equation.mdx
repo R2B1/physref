@@ -1,0 +1,123 @@
+---
+title: "Solutions of the Schrödinger equation (WIP)"
+tags: ["Harmonic oscillator", "Infinite square well"]
+---
+
+import Label from "components/label"
+import Equation from "components/equation"
+import Figures from "components/figures"
+
+<!--
+<Equation
+  label=""
+  latex=""
+  notes={false}
+  notesLabel="more"
+/>
+-->
+
+<!--
+<Equation
+  label=""
+  latex=""
+/>
+-->
+
+## Harmonic oscillator
+
+<Equation
+  label="Potential"
+  latex="V(x) = \tfrac{1}{2}m{\omega ^2}{x^2}"
+/>
+
+<Equation
+  label="Energy levels"
+  latex="E_n = (n+\tfrac{1}{2})\hbar\omega"
+  notes={true}
+/>
+
+Here $n=0,1,2,...$
+
+<Equation
+  label="Stationary states"
+  latex="|n\rangle  = \frac{{{{({a_ + })}^n}}}{{\sqrt {n!} }}|0\rangle = \frac{{{H_n}(\xi )}}{{\sqrt {{2^n}n!} }}|0\rangle"
+  notes={true}
+/>
+
+These are eigenstates of the time-independent Schr&#246;dinger equation $\hat{H}\psi = E\psi$. Here $\xi \equiv \sqrt {\frac{{m\omega }}{\hbar }} x$, and $H_n$ are Hermite polynomials.
+
+<Equation
+  label="Ground state wave function"
+  latex="{\psi _0}(x) = {{( {\frac{{m\omega }}{{\pi \hbar }}} )}^{1/4}}{e^{ - {\xi ^2}/2}}"
+/>
+
+<Equation
+  label="Raising/lowering operators"
+  latex="{{\hat a}_ \pm } \equiv {{(2\hbar m\omega )}^{ - 1/2}}(m\omega \hat x \mp i\hat p)"
+/>
+
+<Equation
+  label="Position operator"
+  latex="\hat x = \sqrt {\frac{\hbar }{{2m\omega }}} ( {{\hat a_ + } + {\hat a_ - }} )"
+/>
+
+<Equation
+  label="Momentum operator"
+  latex="\hat p = i\sqrt {\frac{{\hbar m\omega }}{2}} ( {{\hat a_ + } - {\hat a_ - }} )"
+/>
+
+<Label>Action of raising/lowering operators on stationary states</Label>
+
+* ${{\hat a}_ + }|n\rangle = \sqrt {n + 1} \,|n+1\rangle$
+* $\langle n|{{\hat a}_ - } = \sqrt{n+1} \,\langle n+1|$
+* ${{\hat a}_ - }|n\rangle = \sqrt n \,|n-1\rangle$
+* $\langle n|{{\hat a}_ + } = \sqrt{n} \,\langle n-1|$
+
+<Equation
+  label="Occupation number operator"
+  latex="\hat{n} = \hat{a}_+ \hat{a}_-"
+/>
+
+<Equation
+  label="Hamiltonian"
+  latex="H = (\hat{n} + \tfrac{1}{2})\hbar\omega"
+/>
+
+## Infinite square well (particle in a box)
+
+<Equation
+  label="Potential"
+  latex="V(x) = \begin{cases} 0 &\text{if } 0 \leqslant x \leqslant a \\ \infty &\text{otherwise } \end{cases}"
+/>
+
+<Equation
+  label="Energy levels"
+  latex="E_n = \dfrac{n^2 \pi^2 \hbar^2}{2ma^2}"
+  notes={true}
+/>
+
+Here $n=1,2,3,...$
+
+<Equation
+  label="Stationary states"
+  latex="\psi _n(x) = \sqrt{\dfrac{2}{a}} \sin(\frac{n \pi x}{a})"
+  notes={true}
+/>
+
+These are eigenstates of the time-independent Schr&#246;dinger equation $\hat{H}\psi = E\psi$
+
+<Equation
+  label="Orthonormality of stationary states"
+  latex="\int{\psi_m^* \psi_n dx = \delta_{mn}}"
+  notes={true}
+/>
+
+Here $\delta_{mn}$ is the Kronecker delta.
+
+More to add...
+
+---
+
+### Resources
+
+* [Wikipedia](/)

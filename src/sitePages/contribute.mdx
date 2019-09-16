@@ -1,0 +1,261 @@
+---
+title: "How to contribute to the formulary"
+tags: ["exempt"]
+---
+
+import Equation from "components/equation"
+import EquationRef from "components/equationRef"
+import Figures from "components/figures"
+import Label from "components/label"
+import ToggleNotesButton from "components/toggleNotesButton"
+
+## Introduction
+
+The following is a guide for creating and editing physref formulary pages.
+
+First, follow the steps in the [README](https://github.com/R2B1) for installing and running the project locally.
+
+## Creating new formulary pages and directories
+
+All content on physref is written in [markdown](https://en.wikipedia.org/wiki/Markdown), a lightweight markup language with plain text formatting syntax, which is automatically processed and converted into the HTML pages you see. You can see examples of the basic markdown functions in this [cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet). You can also see the markdown source for any [formulary page](https://github.com/R2B1) or [this page](https://github.com/R2B1) on GitHub.
+
+To create a new page, simply add a new markdown (.mdx) file to the appropriate folder in the `src/formulary/` directory. 
+
+<ToggleNotesButton label="See tips on page scoping" />
+
+It is beneficial to keep a smaller number of longer-format, sectioned pages so that related material can be found nearby without having to jump around several pages. The topical scope of a page should be as general as possible and split into more specialized pages only if it becomes too long. If a topic requires several pages, a new subfolder (or sub-subfolder) can be created for it. This will render expandable submenus in the main navigation menu.
+
+### Naming and ordering
+
+File and folder names are used to generate the page URL path. Folder names are addionally used to label the navigation menu folders. 
+
+The naming convention for both files and folders is `XXXX_File-or-folder-name`, where the `XXXX` is a 4-digit ordering prefix. Smaller numbers are listed first in the navigation menu.
+
+<ToggleNotesButton label="See naming example" />
+
+For example, if you wanted to create a new *General Relativity* subject folder listed in between *Quantum Mechanics* (`src/formulary/4000_Quantum-Mechanics`) and *Electricity and Magnetism* (`src/formulary/5000_Electricity-and-Magnetism`), pick a number between 4000 and 5000 (say, 4500) and create a new folder named `src/formulary/4500_General-Relativity`. Then a new folder button will be created in the navigation menu with label *General Relativity* (but only after you put at least one .mdx file in it).
+
+
+### Frontmatter
+
+Each markdown file must contain the following *frontmatter* at the very top.
+
+```markdown
+---
+title: "Title of the page"
+tags: ["search term 1", "search term 2"]
+---
+```
+
+* `title` is the title that will display at the top of the page and on the navigation menu button.
+* `tags` is an array of search terms.
+
+Currently, only the frontmatter is added to the site's search index. Thus it is important that the `tags` array contain a complete list of relevant search terms and keywords for the entire page.
+
+## Adding sections
+
+Sections are added using the markdown H2 header function (`##`). For example, this section was made with `## Adding sections`. The H2 header is special here because it is overridden by a custom component (see below) behind the scenes that also adds anchor tags and automatically generates the linked table of contents you see at the top.
+
+Subsections and sub-subsection can be denoted with H3 (`###`) and H4 (`####`) headers. You should never use the H1 header (`#`) as it should only be used once for the main page title at the top (as it is automatically).
+
+## JSX components
+
+[React's JSX](https://reactjs.org/docs/introducing-jsx.html) is a syntax extension to JavaScript that looks similar to HTML and is used to build components in React. [MDX](https://mdxjs.com/) allows us to use JSX components in markdown files.
+
+To render a custom component in physref markdown files, simply add the component tag and supply any necessary props (properties), which can be strings or JavaScript expressions wrapped in curly braces `{...}`.
+
+```jsx
+<CustomComponent prop1="value of prop1" prop2={true} />
+```
+
+Physref uses several custom components to properly render things like equations (`<Equation/>`) and figures (`<Figures/>`). To use a component it must first be imported at the top of the page directly below the frontmatter:
+
+```markdown
+---
+title: "Title of the formulary page"
+---
+
+import Equation from "components/equation"
+import EquationRef from "components/equationRef"
+import Figures from "components/figures"
+```
+
+## Adding equations
+
+LaTeX equations are rendered via [KaTeX](https://katex.org/docs/supported.html) (click to see a list of supported functions). They can be added inline ($a^2 + b^2 = c^2$) by surrounding the LaTeX math expression in single dollar signs: `$a^2 + b^2 = c^2$`.
+
+For display-style equations in physref, a custom `<Equation/>` component is used for proper rendering. For example,
+
+```html
+<Equation
+  label="Pythagorean theorem"
+  latex="a^2 + b^2 = c^2"
+/>
+```
+
+renders the following equation with label and number
+
+<Equation
+  label="Pythagorean theorem"
+  latex="a^2 + b^2 = c^2"
+/>
+
+### Adding notes to equations
+
+Supporting information like explanations, derivations, caveats, notes, etc., should be added as a hidden note that can be viewed when needed by manually expanding the section. Simply add a `notes` prop to the `<Equation/>` component (which defaults to `notes={true}`), then add any extra information you'd like *directly below* the component. For example,
+
+```jsx
+<Equation
+  label="Pythagorean theorem"
+  latex="a^2 + b^2 = c^2"
+  notes
+/>
+
+Here $a$, $b$, and $c$ are the lengths of the three sides of a right triangle, where $c$ is the length of the hypotenuse.
+
+```
+
+renders
+
+<Equation
+  label="Pythagorean theorem"
+  latex="a^2 + b^2 = c^2"
+  notes
+/>
+
+Here $a$, $b$, and $c$ are the lengths of the three sides of a right triangle, where $c$ is the length of the hypotenuse.
+
+Only the first HTML element directly below the `<Equation/>` component will be hidden. To add notes that consist of more than one paragraph, use an *ordered* list where each paragraph is a list item. The numbers of ordered lists won't render inside the notes section, but unordered lists will display normally with bullets. For example,
+
+```jsx
+<Equation
+  label="Pythagorean theorem"
+  latex="a^2 + b^2 = c^2"
+  notes
+/>
+
+1. Here $a$, $b$, and $c$ are the lengths of the three sides of a right triangle, where $c$ is the length of the hypotenuse.
+1. Here are some interesting facts:
+    * The theorem has been given [numerous proofs](https://en.wikipedia.org/wiki/Pythagorean_theorem) – possibly the most for any mathematical theorem.
+    * It is debated to what extent, if at all, Pythagoras of Samos actually contributed to mathematics or natural philosophy.
+    * The Pythagorean Rule was probably widespread many centuries prior.
+
+```
+
+renders
+
+<Equation
+  label="Pythagorean theorem"
+  latex="a^2 + b^2 = c^2"
+  notes
+/>
+
+1. Here $a$, $b$, and $c$ are the lengths of the three sides of a right triangle, where $c$ is the length of the hypotenuse.
+1. Here are some interesting facts:
+    * The theorem has been given [numerous proofs](https://en.wikipedia.org/wiki/Pythagorean_theorem) – possibly the most for any mathematical theorem.
+    * It is debated to what extent, if at all, Pythagoras of Samos actually contributed to mathematics or natural philosophy.
+    * The Pythagorean Rule was probably widespread many centuries prior.
+
+Note that you must indent *4 spaces* when nesting lists.
+
+### Referencing equations
+
+You should never hard code a reference to a specific equation number (e.g.: see Eq. (3)) because it might change in the future if more equations are added before it.
+
+To reference an equation, first make sure the `<Equation/>` component you are referencing has a `reference` prop set to a string that is unique on the page. Then you can reference that equation from anywhere else on the page by inserting an `<EquationRef/>` component with the same `reference` prop. For example,
+
+```jsx
+<Equation
+  label="Pythagorean theorem"
+  latex="a^2 + b^2 = c^2"
+  reference="pythag-thm"
+/>
+
+As shown in <EquationRef reference="pythag-thm" />, ...
+```
+
+renders
+
+<Equation
+  label="Pythagorean theorem"
+  latex="a^2 + b^2 = c^2"
+  reference="pythag-thm"
+/>
+
+As shown in <EquationRef reference="pythag-thm" />, ...
+
+### Denoting important equations
+
+If you want to call attention to an equation that carries special importance, you can add an `important` prop to render a star by the equation number:
+
+```jsx
+<Equation
+  label="Pythagorean theorem"
+  latex="a^2 + b^2 = c^2"
+  important
+/>
+```
+
+renders
+
+<Equation
+  label="Pythagorean theorem"
+  latex="a^2 + b^2 = c^2"
+  important
+/>
+
+## Adding standalone notes and labels
+
+<ToggleNotesButton label="See notes on adding standalone notes and labels" />
+
+1. You can add notes outside of equations by using the `<ToggleNotesButton />` component directly. Add a `label` prop if you want a label. For example, this note was created with `<ToggleNotesButton label="See notes on adding standalone notes and labels" />`.
+1. You can also add labels directly using the `<Label>` component. For example, `<Label>This is a standalone label</Label>` produces
+1. <Label>This is a standalone label</Label>
+
+## Adding figures
+
+<ToggleNotesButton label="See notes on creating SVG images" />
+
+Figure images should be SVG images with transparent backrounds and only two colors; black for most features and a coral highlight (`#ff705c` or `rgb(255,112,92)`) to match the physref color scheme. This is so the images look right when dark mode is enabled, which inverts and shifts the images colors to match the dark theme. (If you aren't comfortable creating such vector images with inkscape/illustrator, I can possibly create them [by request](https://github.com/R2B1). Or if there is enough demand I can create a guide in the future.)
+
+Images must have unique filenames sitewide. Technically they can be saved anywhere in the `src/formulary/` directory, but the convention is to save them in the `figures` directory of a given main subject, e.g. `src/formulary/3000-Classical-Mechanics/figures`. Within each subject, the figures should have a common two-character prefix so there is no potential conflict from other subject directories. For example, the images in `src/formulary/3000-Classical-Mechanics/figures` all begin with `cm-`.
+
+Figures can be added anywhere in the formulary page but should typically be added to the beginning of a section with all other figures in that section. The figures can then be grouped together in a carousel display using the `<Figures/>` component by passing arrays of strings to the props, where each array element represents a figure. For example,
+
+```jsx
+<Figures
+  filenames={[
+    "cm-scattering-attractive",
+    "cm-scattering-repulsive",
+  ]}
+  captions={[
+    "Scattering from an attractive central potential",
+    "Scattering from a repulsive central potential",
+  ]}
+  alts={[
+    "Scattering from an attractive central potential",
+    "Scattering from a repulsive central potential",
+  ]}
+/>
+```
+
+renders
+
+<Figures
+  filenames={[
+    "cm-scattering-attractive",
+    "cm-scattering-repulsive",
+  ]}
+  captions={[
+    "Scattering from an attractive central potential",
+    "Scattering from a repulsive central potential",
+  ]}
+  alts={[
+    "Scattering from an attractive central potential",
+    "Scattering from a repulsive central potential",
+  ]}
+/>
+
+* `filenames` takes an array of filenames without the `.svg` extension or path info.
+* `captions` takes an array of captions that will be displayed beneath the figures.
+* `alts` should contain descriptions of the images that will display if the image can't be found. Often this can be the same as the caption.
