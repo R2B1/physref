@@ -49,11 +49,12 @@ const StyledButton = styled.button`
   cursor: pointer;
   font-family: 'Roboto-regular', sans-serif;
   font-size: 1.6rem;
+  height: 4.8rem;
   outline: none;
   padding: 0 1.6rem;
   text-align: left;
   width: 100%;
-  &:hover, &.active {
+  &.active {
     background-color: ${props => props.theme.text};
     border-color: ${props => props.theme.text};
     color: ${props => props.theme.background};

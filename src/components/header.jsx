@@ -33,6 +33,7 @@ const Header = (props) => {
       setNavMenuState({ isOpen: false })
       closeModal()
     } else {
+      document.querySelector('.nav-menu').focus()
       setNavMenuState({ isOpen: true })
       setSearchMenuState({ isOpen: false })
       setSiteMenuState({ isOpen: false })
@@ -45,6 +46,7 @@ const Header = (props) => {
       setSiteMenuState({ isOpen: false })
       closeModal()
     } else {
+      document.querySelector('.site-menu').focus()
       setSiteMenuState({ isOpen: true })
       setNavMenuState({ isOpen: false })
       setSearchMenuState({ isOpen: false })

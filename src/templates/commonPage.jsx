@@ -87,7 +87,7 @@ export default function CommonPage(props) {
       <MDXRenderer>{mdx.body}</MDXRenderer>
       <hr/>
       <CommonFooter>
-        <a href='https://github.com/R2B1'>Edit this page on GitHub</a>
+        <a href='https://github.com/R2B1/physref'>Edit this page on GitHub</a>
         <br/><br/><br/>
       </CommonFooter>
     </CommonPageStyles>
