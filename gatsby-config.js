@@ -79,14 +79,12 @@ module.exports = {
         name: `physref`,
         short_name: `physref`,
         start_url: `/`,
-        background_color: `#22180e`,
-        theme_color: `#22180e`,
-        display: `minimal-ui`,
+        background_color: `#ffffff`,
+        theme_color: `#ffffff`,
+        display: `standalone`,
         icon: `src/images/icons/physref-icon.png`,
       },
     },
-    // this (optional) plugin enables Progressive Web App + Offline functionality
-    // To learn more, visit: https://gatsby.dev/offline
-    // `gatsby-plugin-offline`,
+    `gatsby-plugin-offline`,
   ],
 }

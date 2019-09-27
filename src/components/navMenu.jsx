@@ -62,7 +62,6 @@ const NavMenu = (props) => {
   const queryData = useStaticQuery(MENU_QUERY)
   const menuTree = buildMenuTree(queryData.allMdx.edges)
   sortMenuByPriority(menuTree)
-  console.log(menuTree)
   return (
     <NavMenuUI
       tree={menuTree}

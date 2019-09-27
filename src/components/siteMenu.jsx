@@ -8,7 +8,6 @@ import { device } from '../styles/device'
 const SiteMenu = (props) => {
 
   const themeState = useColorTheme()
-  console.log('siteMenu rendering...')
 
   const toggleDarkMode = () => {
     themeState.toggle()
