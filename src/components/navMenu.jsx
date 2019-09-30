@@ -59,16 +59,26 @@ function buildMenuTree(graphEdges) {
 }
 
 const NavMenu = (props) => {
+
   const queryData = useStaticQuery(MENU_QUERY)
-  const menuTree = buildMenuTree(queryData.allMdx.edges)
-  sortMenuByPriority(menuTree)
-  return (
-    <NavMenuUI
-      tree={menuTree}
-      menuState={props.menuState}
-      toggleMenu={props.toggleMenu}  
-    />
-  )
+
+  // Only build menu tree when page loads
+  const menuTree = React.useMemo(() => {
+    const menuTree = buildMenuTree(queryData.allMdx.edges)
+    sortMenuByPriority(menuTree)
+    return menuTree
+  }, [])
+
+  // Only rerender nav menu on state change
+  return React.useMemo(() => {
+    return (
+      <NavMenuUI
+        tree={menuTree}
+        menuState={props.menuState}
+        toggleMenu={props.toggleMenu}  
+      />
+    )
+  }, [props.menuState.isOpen])
 }
 
 const MENU_QUERY = graphql`

@@ -2,7 +2,6 @@ import React from 'react'
 import { Link } from 'gatsby'
 import { Index } from 'elasticlunr'
 import styled from '@emotion/styled'
-// import { LinkButton } from './menuButtons'
 import { device } from '../styles/device'
 
 
@@ -71,12 +70,8 @@ export default class SearchMenu extends React.Component {
           matchingTags.push(tag)
         }
       })
-      console.log('matching tags:')
-      console.log(matchingTags)
       result.matchingTags = matchingTags
     })
-    console.log('results:')
-    console.log(results)
 
     this.setState({
       query,

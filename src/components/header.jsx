@@ -16,48 +16,54 @@ const Header = (props) => {
 
   const toggleSearchMenu = () => {
     if (searchStateMenu.isOpen) {
-      setSearchMenuState({ isOpen: false })
+      closeMenus()
       closeModal()
-      // return focus to...
     } else {
+      closeMenus()
       document.querySelector('.search-input').focus()
       setSearchMenuState({ isOpen: true })
-      setNavMenuState({ isOpen: false })
-      setSiteMenuState({ isOpen: false })
       openModal()
     }
   }
 
   const toggleNavMenu = () => {
     if (navMenuState.isOpen) {
-      setNavMenuState({ isOpen: false })
+      closeMenus()
       closeModal()
     } else {
+      closeMenus()
       document.querySelector('.nav-menu').focus()
       setNavMenuState({ isOpen: true })
-      setSearchMenuState({ isOpen: false })
-      setSiteMenuState({ isOpen: false })
       openModal()
     }
   }
 
   const toggleSiteMenu = () => {
     if (siteMenuState.isOpen) {
-      setSiteMenuState({ isOpen: false })
+      closeMenus()
       closeModal()
     } else {
+      closeMenus()
       document.querySelector('.site-menu').focus()
       setSiteMenuState({ isOpen: true })
-      setNavMenuState({ isOpen: false })
-      setSearchMenuState({ isOpen: false })
       openModal()
     }
   }
 
-  const closeAllMenus = () => {
-    setSearchMenuState({ isOpen: false })
-    setNavMenuState({ isOpen: false })
-    setSiteMenuState({ isOpen: false })
+  const closeMenus = () => {
+    if (searchStateMenu.isOpen) {
+      setSearchMenuState({ isOpen: false })
+    }
+    if (navMenuState.isOpen) {
+      setNavMenuState({ isOpen: false })
+    }
+    if (siteMenuState.isOpen) {
+      setSiteMenuState({ isOpen: false })
+    }
+  }
+
+  const closeModalAndMenus = () => {
+    closeMenus()
     closeModal()
   }
 
@@ -126,7 +132,7 @@ const Header = (props) => {
         slug={props.slug}
       />
       <MenuCover />
-      <ModalShadow className='modal' onClick={closeAllMenus} />
+      <ModalShadow className='modal' onClick={closeModalAndMenus} />
     </>
   )
 }
