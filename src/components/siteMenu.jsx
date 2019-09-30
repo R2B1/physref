@@ -28,6 +28,7 @@ const SiteMenu = (props) => {
       <LinkButton title={'about'} slug={'/about/'} onClick={props.toggleMenu} />
       <LinkButton title={'contribute'} slug={'/contribute/'} onClick={props.toggleMenu} />
       <LinkButton title={'github'} slug={'/'} onClick={props.toggleMenu} />
+      {/* <ExternalLinkButton title={'github'} slug={'https://github.com/R2B1/physref'} onClick={props.toggleMenu} /> */}
     </SiteMenuContainer>
   )
 }

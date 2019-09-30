@@ -1,5 +1,5 @@
 import React from 'react'
-// import SEO from '../components/seo'
+import SEO from '../components/seo'
 import MDXRenderer from 'gatsby-plugin-mdx/mdx-renderer'
 import styled from '@emotion/styled'
 import 'katex/dist/katex.min.css'
@@ -81,7 +81,7 @@ export default function CommonPage(props) {
 
   return (
     <CommonPageStyles className={props.className}>
-      {/* <SEO title={mdx.frontmatter.title} /> */}
+      <SEO title={mdx.frontmatter.title} />
       {mdx.frontmatter.title !== '' && <h1 className='page-title'>{mdx.frontmatter.title}</h1>}
       <TableOfContents className='toc-list' />
       <MDXRenderer>{mdx.body}</MDXRenderer>

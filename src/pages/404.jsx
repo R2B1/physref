@@ -1,13 +1,15 @@
 import React from 'react'
 import SEO from '../components/seo'
+import CommonPageStyles from '../styles/commonPageStyles'
 import SitePageStyles from '../styles/sitePageStyles'
 
 const NotFoundPage = () => (
-  <SitePageStyles>
-    <SEO title='404: Not found' />
-    <h1>PAGE NOT FOUND</h1>
-    <p>Oops! That route doesn&#39;t exist...</p>
-  </SitePageStyles>
+  <CommonPageStyles>
+    <SitePageStyles>
+      <SEO title='404: Not found' />
+      <h1>404: Page not found</h1>
+    </SitePageStyles>
+  </CommonPageStyles>
 )
 
 export default NotFoundPage
