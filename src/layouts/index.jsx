@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Helmet from 'react-helmet'
 import { MDXProvider } from '@mdx-js/react'
 import styled from '@emotion/styled'
 import Header from '../components/header'
@@ -13,9 +12,6 @@ const Layout = (props) => {
   
   return (
     <ColorThemeWrapper>
-      <Helmet>
-        <link rel='stylesheet' href='https://fonts.googleapis.com/icon?family=Material+Icons' />
-      </Helmet>
       <PageWrapper>
         <Header slug={props.location.pathname} />
         <MDXProvider
@@ -29,7 +25,6 @@ const Layout = (props) => {
     </ColorThemeWrapper>
   )
 }
-
 
 
 Layout.propTypes = {

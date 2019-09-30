@@ -208,8 +208,8 @@ const Headband = styled.header`
   .material-icons {
     color: ${props => props.theme.highlight};
     cursor: pointer;
-    font-size: 2.8rem;
-    margin: 0 0.4rem;
+    font-size: 3.2rem;
+    margin: 0 0.6rem;
     &.open {
       background-color: ${props => props.theme.highlight};
       color: ${props => props.theme.background};
