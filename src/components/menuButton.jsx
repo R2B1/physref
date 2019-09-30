@@ -119,13 +119,14 @@ const StyledButton = styled.button`
   cursor: pointer;
   font-family: 'Roboto-light', sans-serif;
   font-size: 1.6rem;
-  /* height: 4.8rem; */
+  height: 4.8rem;
   outline: none;
   padding: 0 1.6rem;
   text-align: left;
   width: 100%;
   &.search-link-button {
     font-size: 1.4rem;
+    height: 6.0rem;
     .flex-container {
       height: 6.0rem;
     }
