@@ -1,32 +1,8 @@
 import React from 'react'
-import { Link } from 'gatsby'
 import { Index } from 'elasticlunr'
 import styled from '@emotion/styled'
+import MenuButton from './menuButton'
 import { device } from '../styles/device'
-
-
-const SearchButton = (props) => {
-  return (
-    <Link to={props.slug}>
-      <StyledButton 
-        className='search-button'
-        onClick={props.onClick}
-      >
-        <div className='flex-container'>
-          <div>
-            {props.title}
-            {props.tags.length > 0 && (
-              <span className='search-tags'>
-                {': ' + props.tags.join(', ')}
-              </span>
-            )}
-          </div>
-          <div><i className='material-icons'>arrow_right</i></div>
-        </div>
-      </StyledButton>
-    </Link>
-  )
-}
 
 
 export default class SearchMenu extends React.Component {
@@ -88,7 +64,8 @@ export default class SearchMenu extends React.Component {
         </div>
         {this.state.results.map(page => (
           <li key={page.id}>
-            <SearchButton 
+            <MenuButton 
+              buttonType='search-link'
               title={page.title}
               tags={page.matchingTags}
               slug={page.slug} 
@@ -103,41 +80,6 @@ export default class SearchMenu extends React.Component {
 
 
 // STYLES =============================
-
-const StyledButton = styled.button`
-  background-color: ${props => props.theme.background};
-  color: ${props => props.theme.text};
-  border: 0;
-  cursor: pointer;
-  font-family: 'Roboto-light', sans-serif;
-  font-size: 1.4rem;
-  outline: none;
-  padding: 0 1.6rem;
-  text-align: left;
-  width: 100%;
-  &:hover {
-    background-color: ${props => props.theme.text};
-    border-color: ${props => props.theme.text};
-    color: ${props => props.theme.background};
-    .material-icons {
-      color: ${props => props.theme.background};
-    }
-  }
-  .flex-container {
-    height: 6rem;
-    display: flex;
-    flex-flow: row nowrap;
-    align-items: center;
-    justify-content: space-between;
-  }
-  .material-icons {
-    font-size: 3.2rem;
-    color: ${props => props.theme.highlight};
-  }
-  .search-tags {
-    font-family: 'Roboto-bold', sans-serif;
-  }
-`
 
 const SearchMenuContainer = styled.ul`
   position: fixed;

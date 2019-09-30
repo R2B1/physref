@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from '@emotion/styled'
 import { useColorTheme } from '../context/ColorTheme'
-import { LinkButton } from './menuButtons'
+import MenuButton from './menuButton'
 import { device } from '../styles/device'
 
 
@@ -19,16 +19,30 @@ const SiteMenu = (props) => {
       className={`site-menu ${props.menuState.isOpen ? 'visible' : 'hidden'}`} 
       role='navigation'
     >
-      <LinkButton 
+      <MenuButton 
+        buttonType='link' 
         title={`${themeState.dark ? 'light' : 'dark'} theme`} 
         slug={props.slug} 
         onClick={toggleDarkMode} 
         icon={`${themeState.dark ? 'brightness_5' : 'brightness_3'}`}
       />
-      <LinkButton title={'about'} slug={'/about/'} onClick={props.toggleMenu} />
-      <LinkButton title={'contribute'} slug={'/contribute/'} onClick={props.toggleMenu} />
-      <LinkButton title={'github'} slug={'/'} onClick={props.toggleMenu} />
-      {/* <ExternalLinkButton title={'github'} slug={'https://github.com/R2B1/physref'} onClick={props.toggleMenu} /> */}
+      <MenuButton 
+        buttonType='link' 
+        title={'about'} 
+        slug={'/about/'} 
+        onClick={props.toggleMenu} 
+      />
+      <MenuButton 
+        buttonType='link' 
+        title={'contribute'} 
+        slug={'/contribute/'} 
+        onClick={props.toggleMenu} 
+      />
+      <MenuButton 
+        buttonType='external-link' 
+        title={'github'} 
+        slug={'https://github.com/R2B1/physref'} 
+      />
     </SiteMenuContainer>
   )
 }

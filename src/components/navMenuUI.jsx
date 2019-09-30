@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from '@emotion/styled'
-import { LinkButton, FolderButton } from './menuButtons'
+import MenuButton from './menuButton'
 import { device } from '../styles/device'
 
 
@@ -51,7 +51,7 @@ const FolderButtonContainer = (props) => {
       expandSubmenu(submenu)
     }
   }
-  return <FolderButton title={props.title} onClick={onFolderClick} />
+  return <MenuButton buttonType='folder' title={props.title} onClick={onFolderClick} />
 }
 
 
@@ -79,7 +79,7 @@ const NavMenuUI = (props) => {
       } else {
         isDisabled = false
       }
-      button = <LinkButton title={title} slug={slug} disabled={isDisabled} onClick={props.toggleMenu} />
+      button = <MenuButton buttonType='link' title={title} slug={slug} disabled={isDisabled} onClick={props.toggleMenu} />
     }
     
     return (
