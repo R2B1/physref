@@ -87,8 +87,8 @@ const Header = (props) => {
     <>
       <Headband>
         <div className='flex-container'>
-          <div className='header__title' tabindex='10'>
-            <Link to='/'>
+          <div className='header__title'>
+            <Link to='/' tabindex='0'>
               physref<DotCom>.com</DotCom>
             </Link>
           </div>
@@ -97,21 +97,21 @@ const Header = (props) => {
               <i
                 className={`material-icons ${searchStateMenu.isOpen ? 'open' : ''}`}
                 onClick={toggleSearchMenu}
-                tabindex='20'
+                tabindex='0'
               >search</i>
             </div>
             <div>
               <i
                 className={`material-icons ${navMenuState.isOpen ? 'open' : ''}`}
                 onClick={toggleNavMenu}
-                tabindex='30'
+                tabindex='0'
               >menu</i>
             </div>
             <div>
               <i
                 className={`material-icons ${siteMenuState.isOpen ? 'open' : ''}`}
                 onClick={toggleSiteMenu}
-                tabindex='40'
+                tabindex='0'
               >more_horiz</i>
             </div>
           </div>
