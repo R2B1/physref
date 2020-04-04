@@ -1,7 +1,6 @@
-/**
- * Implement Gatsby's SSR (Server Side Rendering) APIs in this file.
- *
- * See: https://www.gatsbyjs.org/docs/ssr-apis/
- */
+import React from 'react'
+import { ColorThemeProvider } from './src/context/ColorTheme'
 
-// You can delete this file if you're not using it
+export const wrapRootElement = ({ element }) => (
+  <ColorThemeProvider>{element}</ColorThemeProvider>
+)
