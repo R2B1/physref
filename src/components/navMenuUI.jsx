@@ -151,26 +151,24 @@ const NavMenuUI = (props) => {
 }
 
 const NavMenuContainer = styled.nav`
-  position: fixed;
-  left: 0;
+  position: absolute;
+  left: -32rem;
   background-color: ${props => props.theme.background};
-  height: 100%;
+  height: calc(100vh - 4.8rem);
+  @media ${device.large} { height: calc(100vh - 6rem) }
   width: 32rem;
   overflow: scroll;
   z-index: 20;
   &.hidden {
     opacity: 0;
-    transform: translateX(100vw);
+    transform: translateX(0);
     transition: transform 0.4s ease 0s, opacity 0s linear 0.5s;
   }
   &.visible {
     opacity: 1;
-    transform: translateX(calc(100vw - 32rem));
+    transform: translateX(100vw);
+    @media ${device.fullwidth} { transform: translateX(calc(80rem + 16px)); }
     transition: opacity 0s linear 0s, transform 0.4s ease .01s;
-  }
-  @media ${device.fullwidth} {
-    &.hidden { transform: translateX(80rem); }
-    &.visible { transform: translateX(48rem); }
   }
 `
 

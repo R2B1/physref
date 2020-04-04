@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'gatsby'
 import styled from '@emotion/styled'
+import { device } from '../styles/device'
 
 const Button = (props) => {
   return (
@@ -124,6 +125,12 @@ const StyledButton = styled.button`
   padding: 0 1.6rem;
   text-align: left;
   width: 100%;
+  @media ${device.fullwidth} {
+    &:hover {
+      background-color: ${props => props.theme.text};
+      color: ${props => props.theme.background};
+    }
+  }
   &.search-link-button {
     font-size: 1.4rem;
     height: 6.0rem;

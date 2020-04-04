@@ -4,6 +4,7 @@ import styled from '@emotion/styled'
 import SearchMenu from './searchMenu'
 import NavMenu from '../components/navMenu'
 import SiteMenu from '../components/siteMenu'
+import { device } from '../styles/device'
 
 
 const Header = (props) => {
@@ -88,8 +89,8 @@ const Header = (props) => {
       <Headband>
         <div className='flex-container'>
           <div className='header__title'>
-            <Link to='/' tabindex='0'>
-              physref<DotCom>.com</DotCom>
+            <Link to='/' tabIndex='0'>
+              physref
             </Link>
           </div>
           <div className='icons-container'>
@@ -97,41 +98,46 @@ const Header = (props) => {
               <i
                 className={`material-icons ${searchStateMenu.isOpen ? 'open' : ''}`}
                 onClick={toggleSearchMenu}
-                tabindex='0'
+                tabIndex='0'
               >search</i>
             </div>
             <div>
               <i
                 className={`material-icons ${navMenuState.isOpen ? 'open' : ''}`}
                 onClick={toggleNavMenu}
-                tabindex='0'
+                tabIndex='0'
               >menu</i>
             </div>
             <div>
               <i
                 className={`material-icons ${siteMenuState.isOpen ? 'open' : ''}`}
                 onClick={toggleSiteMenu}
-                tabindex='0'
+                tabIndex='0'
               >more_horiz</i>
             </div>
           </div>
         </div>
       </Headband>
-      <SearchMenu 
-        searchIndex={queryData.siteSearchIndex.index}
-        menuState={searchStateMenu}
-        toggleMenu={toggleSearchMenu}
-      />
-      <NavMenu 
-        menuState={navMenuState}
-        toggleMenu={toggleNavMenu}
-      />
-      <SiteMenu 
-        menuState={siteMenuState}
-        toggleMenu={toggleSiteMenu}
-        slug={props.slug}
-      />
-      <MenuCover />
+      <MenuContainer>
+        <SearchMenu 
+          searchIndex={queryData.siteSearchIndex.index}
+          menuState={searchStateMenu}
+          toggleMenu={toggleSearchMenu}
+        />
+      </MenuContainer>
+      <MenuContainer>
+        <NavMenu 
+          menuState={navMenuState}
+          toggleMenu={toggleNavMenu}
+        />
+      </MenuContainer>
+      <MenuContainer>
+        <SiteMenu 
+          menuState={siteMenuState}
+          toggleMenu={toggleSiteMenu}
+          slug={props.slug}
+        />
+      </MenuContainer>
       <ModalShadow className='modal' onClick={closeModalAndMenus} />
     </>
   )
@@ -143,17 +149,6 @@ const SEARCH_INDEX_QUERY = graphql`
       index
     }
   }
-`
-
-// This covers the closed menus on large screens
-const MenuCover = styled.div`
-  background-color: ${props => props.theme.background};
-  position: fixed;
-  left: 80rem;
-  top: 0;
-  width: 999rem;
-  min-height: 100vh;
-  z-index: 50;
 `
 
 const ModalShadow = styled.div`
@@ -174,7 +169,12 @@ const ModalShadow = styled.div`
     transition: transform 0s linear 0s, opacity .4s ease .01s;
   }
 `
-
+const MenuContainer = styled.div`
+  position: sticky;
+  top: 4.8rem;
+  @media ${device.large} { top: 6rem; }
+  z-index: 15;
+`
 const Headband = styled.header`
   background-color: ${props => props.theme.background};
   padding: 0 1.6rem;
@@ -183,7 +183,8 @@ const Headband = styled.header`
   top: 0;
   z-index: 40;
   .flex-container {
-    height: 3em;
+    height: 4.8rem;
+    @media ${device.large} { height: 6rem; }
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
@@ -215,12 +216,6 @@ const Headband = styled.header`
       color: ${props => props.theme.background};
     }
   }
-`
-
-const DotCom = styled.span`
-  color: ${props => props.theme.text};
-  font-family: 'Roboto-light', sans-serif;
-  font-size: 1.6rem;
 `
 
 export default Header

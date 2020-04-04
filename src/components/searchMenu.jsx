@@ -82,9 +82,9 @@ export default class SearchMenu extends React.Component {
 // STYLES =============================
 
 const SearchMenuContainer = styled.ul`
-  position: fixed;
-  left: 0;
-  width: 32.0rem;
+  position: absolute;
+  left: -32rem;
+  width: 32rem;
   z-index: 30;
   /* overflow: scroll; */
   background-color: ${props => props.theme.background};
@@ -95,17 +95,14 @@ const SearchMenuContainer = styled.ul`
   padding: 0;
   &.hidden {
     opacity: 0;
-    transform: translateX(100vw);
+    transform: translateX(0);
     transition: transform 0.4s ease 0s, opacity 0s linear 0.5s;
   }
   &.visible {
     opacity: 1;
-    transform: translateX(calc(100vw - 32rem));
+    transform: translateX(100vw);
+    @media ${device.fullwidth} { transform: translateX(80rem); }
     transition: opacity 0s linear 0s, transform 0.4s ease .01s;
-  }
-  @media ${device.fullwidth} {
-    &.hidden { transform: translateX(80rem); }
-    &.visible { transform: translateX(48rem); }
   }
   a {
     color: ${props => props.theme.highlight};
