@@ -6,6 +6,19 @@ import CarouselControls from './carouselControls'
 import { useColorTheme } from '../context/ColorTheme'
 
 
+const IMAGE_QUERY = graphql`
+  query ImageQuery {
+    allFile(filter: { extension: { eq: "svg" } }) {
+      edges {
+        node {
+          publicURL
+          name
+        }
+      }
+    }
+  }
+`
+
 const Figures = (props) => {
   
   const themeState = useColorTheme()
@@ -57,21 +70,7 @@ const Figures = (props) => {
       </Carousel>
     </CarouselContainer>
   )
-
 }
-
-const IMAGE_QUERY = graphql`
-  query ImageQuery {
-    allFile(filter: { extension: { eq: "svg" } }) {
-      edges {
-        node {
-          publicURL
-          name
-        }
-      }
-    }
-  }
-`
 
 const CarouselContainer = styled.div`
   margin: 1.75em auto 1.25em auto;
@@ -83,12 +82,12 @@ const CarouselContainer = styled.div`
 `
 
 const FigCaption = styled.div`
-  font-family: 'Roboto-regular', sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
   font-size: 0.75em;
   text-align: center;
   width: 100%;
   .fig-label {
-    font-family: 'Roboto-bold', sans-serif;
+    font-weight: bold;
   }
 `
 

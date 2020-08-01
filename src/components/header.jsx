@@ -1,87 +1,53 @@
 import React from 'react'
 import { Link, graphql, useStaticQuery } from 'gatsby'
 import styled from '@emotion/styled'
+import clsx from 'clsx'
 import SearchMenu from './searchMenu'
-import NavMenu from '../components/navMenu'
-import SiteMenu from '../components/siteMenu'
+import SiteMenu from './siteMenu'
 import { device } from '../styles/device'
 
 
-const Header = (props) => {
+const SEARCH_INDEX_QUERY = graphql`
+  query SearchIndexQuery {
+    siteSearchIndex {
+      index
+    }
+  }
+`
 
+const Header = (props) => {
+  console.log(props.slug)
   const queryData = useStaticQuery(SEARCH_INDEX_QUERY)
 
-  const [searchStateMenu, setSearchMenuState] = React.useState({ isOpen: false })
-  const [navMenuState, setNavMenuState] = React.useState({ isOpen: false })
-  const [siteMenuState, setSiteMenuState] = React.useState({ isOpen: false })
+  const [showSearchMenu, setShowSearchMenu] = React.useState(false)
+  const [showSiteMenu, setShowSiteMenu] = React.useState(false)
+  const [showModal, setShowModal] = React.useState(false)
 
-  const toggleSearchMenu = () => {
-    if (searchStateMenu.isOpen) {
-      closeMenus()
-      closeModal()
+  const toggleMenu = (isOpen, menuType) => {
+    if (isOpen) {
+      closeModalAndMenus()
     } else {
-      closeMenus()
-      document.querySelector('.search-input').focus()
-      setSearchMenuState({ isOpen: true })
-      openModal()
-    }
-  }
-
-  const toggleNavMenu = () => {
-    if (navMenuState.isOpen) {
-      closeMenus()
-      closeModal()
-    } else {
-      closeMenus()
-      document.querySelector('.nav-menu').focus()
-      setNavMenuState({ isOpen: true })
-      openModal()
-    }
-  }
-
-  const toggleSiteMenu = () => {
-    if (siteMenuState.isOpen) {
-      closeMenus()
-      closeModal()
-    } else {
-      closeMenus()
-      document.querySelector('.site-menu').focus()
-      setSiteMenuState({ isOpen: true })
-      openModal()
-    }
-  }
-
-  const closeMenus = () => {
-    if (searchStateMenu.isOpen) {
-      setSearchMenuState({ isOpen: false })
-    }
-    if (navMenuState.isOpen) {
-      setNavMenuState({ isOpen: false })
-    }
-    if (siteMenuState.isOpen) {
-      setSiteMenuState({ isOpen: false })
+      switch (menuType) {
+        case 'search':
+          console.log('search menu is opening')
+          setShowSearchMenu(true)
+          setShowSiteMenu(false)
+          document.querySelector('.search-input').focus()
+          break
+        case 'site':
+        default:
+          console.log('site menu is opening')
+          setShowSiteMenu(true)
+          setShowSearchMenu(false)
+      }
+      setShowModal(true)
     }
   }
 
   const closeModalAndMenus = () => {
-    closeMenus()
-    closeModal()
-  }
-
-  const openModal = () => {
-    const modal = document.querySelector('.modal')
-    if (!modal.classList.contains('is-open'))
-    {
-      modal.classList.toggle('is-open')
-    }
-  }
-
-  const closeModal = () => {
-    const modal = document.querySelector('.modal')
-    if (modal.classList.contains('is-open'))
-    {
-      modal.classList.toggle('is-open')
-    }
+    setShowSearchMenu(false)
+    setShowSiteMenu(false)
+    setShowModal(false)
   }
 
   return (
@@ -93,61 +59,124 @@ const Header = (props) => {
               physref
             </Link>
           </div>
-          <div className='icons-container'>
-            <div>
-              <i
-                className={`material-icons ${searchStateMenu.isOpen ? 'open' : ''}`}
-                onClick={toggleSearchMenu}
-                tabIndex='0'
-              >search</i>
-            </div>
-            <div>
-              <i
-                className={`material-icons ${navMenuState.isOpen ? 'open' : ''}`}
-                onClick={toggleNavMenu}
-                tabIndex='0'
-              >menu</i>
-            </div>
-            <div>
-              <i
-                className={`material-icons ${siteMenuState.isOpen ? 'open' : ''}`}
-                onClick={toggleSiteMenu}
-                tabIndex='0'
-              >more_horiz</i>
-            </div>
+          <div className='menu-buttons'>
+            <MenuButton
+              className={clsx({'open' : showSearchMenu})}
+              onClick={() => toggleMenu(showSearchMenu, 'search')}
+            >
+              <i className='material-icons'>search</i>
+            </MenuButton>            
+            <MenuButton
+              className={clsx({'open' : showSiteMenu})}
+              onClick={() => toggleMenu(showSiteMenu, 'site')}
+            >
+              <i className='material-icons'>menu</i>
+            </MenuButton>
           </div>
         </div>
       </Headband>
-      <MenuContainer>
+      <MenuContainer
+        className={clsx('search-menu', {'show' : showSearchMenu})}
+      >
         <SearchMenu 
           searchIndex={queryData.siteSearchIndex.index}
-          menuState={searchStateMenu}
-          toggleMenu={toggleSearchMenu}
+          toggleMenu={() => toggleMenu(showSearchMenu, 'search')}
         />
       </MenuContainer>
-      <MenuContainer>
-        <NavMenu 
-          menuState={navMenuState}
-          toggleMenu={toggleNavMenu}
-        />
-      </MenuContainer>
-      <MenuContainer>
+      <MenuContainer
+        className={clsx('site-menu', {'show' : showSiteMenu})}
+      >
         <SiteMenu 
-          menuState={siteMenuState}
-          toggleMenu={toggleSiteMenu}
+          toggleMenu={() => toggleMenu(showSiteMenu, 'site')}
           slug={props.slug}
         />
       </MenuContainer>
-      <ModalShadow className='modal' onClick={closeModalAndMenus} />
+      <ModalShadow
+        className={clsx('modal', {'show' : showModal})}
+        onClick={closeModalAndMenus} 
+      />
     </>
   )
 }
 
-const SEARCH_INDEX_QUERY = graphql`
-  query SearchIndexQuery {
-    siteSearchIndex {
-      index
+
+
+const Headband = styled.header`
+  background-color: ${props => props.theme.background[0]};
+  padding: 0 0 0 1.6rem;
+  position: relative;
+  width: 100%;
+  z-index: 50;
+  .flex-container {
+    height: 6rem;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .header__title {
+    align-items: center;
+    display: flex;
+    font-size: 2.4em;
+    font-weight: bold;
+    a {
+      color: ${props => props.theme.primary.base};
+      text-decoration: none;
     }
+  }
+  .menu-buttons {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-between;
+  }
+`
+
+const MenuButton = styled.button`
+  background-color: ${props => props.theme.background[0]};
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  outline: none;
+  height: 6rem;
+  width: 6rem;
+  @media ${device.large} {
+    &:hover {
+      background-color: ${props => props.theme.background[1]};
+    }
+  }
+  .material-icons {
+    color: ${props => props.theme.primary.base};
+    cursor: pointer;
+    font-size: 3.2rem;
+    margin: 0;
+  }
+  &.open {
+    background-color: ${props => props.theme.primary.base};
+    .material-icons {
+      color: ${props => props.theme.background[0]};
+      cursor: pointer;
+    }
+    &:focus {
+      background-color: ${props => props.theme.primary.base};
+    }
+  }
+  &:focus {
+    background-color: ${props => props.theme.background[1]};
+  }
+
+`
+
+const MenuContainer = styled.nav`
+  display: none;
+  position: absolute;
+  top: 6rem;
+  right: 0;
+  background-color: ${props => props.theme.background[0]};
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 20px;
+  z-index: 45;
+  &.show {
+    display: block;
   }
 `
 
@@ -157,64 +186,16 @@ const ModalShadow = styled.div`
   top: 0;
   width: 100%;
   height: 100%;
-  z-index: 10;
-  background-color: ${props => props.theme.background};
-  background-color: ${props => props.theme.text};
+  z-index: 40;
+  background-color: ${props => props.theme.background[0]};
+  background-color: ${props => props.theme.text[0]};
   opacity: 0;
   transform: translateY(-9999px);
-  transition: opacity .4s ease 0s, transform 0s linear .4s;
-  &.is-open {
-    opacity: 0.6;
+  transition: transform 0s linear .2s, opacity .2s ease 0s;
+  &.show {
+    opacity: 0.3;
     transform: translateY(0px);
-    transition: transform 0s linear 0s, opacity .4s ease .01s;
-  }
-`
-const MenuContainer = styled.div`
-  position: sticky;
-  top: 4.8rem;
-  @media ${device.large} { top: 6rem; }
-  z-index: 15;
-`
-const Headband = styled.header`
-  background-color: ${props => props.theme.background};
-  padding: 0 1.6rem;
-  width: 100%;
-  position: sticky;
-  top: 0;
-  z-index: 40;
-  .flex-container {
-    height: 4.8rem;
-    @media ${device.large} { height: 6rem; }
-    display: flex;
-    flex-flow: row nowrap;
-    align-items: center;
-    justify-content: space-between;
-  }
-  .header__title {
-    align-items: center;
-    display: flex;
-    font-family: 'Roboto-bold', sans-serif;
-    font-size: 1.6em;
-    a {
-      color: ${props => props.theme.highlight};
-      text-decoration: none;
-    }
-  }
-  .icons-container {
-    display: flex;
-    flex-flow: row nowrap;
-    align-items: center;
-    justify-content: space-between;
-  }
-  .material-icons {
-    color: ${props => props.theme.highlight};
-    cursor: pointer;
-    font-size: 3.2rem;
-    margin: 0 0.6rem;
-    &.open {
-      background-color: ${props => props.theme.highlight};
-      color: ${props => props.theme.background};
-    }
+    transition: transform 0s, opacity .2s ease .01s;
   }
 `
 

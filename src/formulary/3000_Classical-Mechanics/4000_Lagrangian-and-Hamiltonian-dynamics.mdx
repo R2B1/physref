@@ -40,6 +40,34 @@ import Equation from "components/equation"
   latex="\dfrac{d}{dt}\dfrac{\partial L}{\partial\dot{q}_i} - \dfrac{\partial L}{\partial q_i} = Q_i = \sum_k \lambda_k \dfrac{\partial f_k}{\partial q_i}"
 />
 
+## Hamiltonian dynamics
+
+<Equation
+  label="Hamiltonian"
+  latex="H(p_i,q_i,t)\equiv\sum_i p_i\dot{q}_i-L(q_i,\dot{q}_i,t)"
+  notes={true}
+/>
+
+The Hamiltonian is a Legendre transform from $(q,\dot{q},t)$ to $(p,q,t)$ 
+
+<Equation
+  label="Hamilton's equations of motion"
+  latex="\dfrac{\partial H}{\partial p_i}=\dot{q}_i\text{,}~~~~\dfrac{\partial H}{\partial q_i}=-\dot{p}_i"
+/>
+
+## Poisson brackets
+
+<Equation
+  label="Poisson brackets definition"
+  latex="\{F,G\} \equiv \sum_i \bigr( \dfrac{\partial F}{\partial q_i}\dfrac{\partial G}{\partial p_i} - \dfrac{\partial F}{\partial p_i}\dfrac{\partial G}{\partial q_i} \bigl) = -\{G,F\}"
+/>
+
+<Equation
+  label=""
+  latex=""
+/>
+
+
 <!--
 \textbf{Lagrangian} \indnt\bull $L(q_i,\dot{q}_i,t)\equiv T-V$ \\
 Canonical momentum \indnt\bull $p_i\equiv\tfrac{\partial L}{\partial \dot{q}_i}$ \\

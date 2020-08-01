@@ -62,9 +62,13 @@ const EquationContainer = styled.div`
   grid-gap: 0.4rem 1.2rem;
   justify-items: start;
   align-items: center;
-  padding: 0.8rem 0;
+  background-color: ${props => props.theme.background[0]};
+  padding: 0.8rem 0.8rem;
+  &:hover {
+    background-color: ${props => props.theme.background[1]};
+  }
   @media ${device.medium} {
-    grid-template-columns: 12rem 3.2rem 1fr auto auto;
+    grid-template-columns: 16rem 3.2rem 1fr auto auto;
     grid-template-rows: auto;
     grid-template-areas: 'eqn-label notes-btn equation eqn-star eqn-number';
     grid-gap: 0 1.6rem;
@@ -77,7 +81,7 @@ const EqnStar = styled.div`
   text-align: right;
   .material-icons {
     font-size: 1.2em;
-    color: ${props => props.theme.highlight};
+    color: ${props => props.theme.primary.base};
   }
 `
 
@@ -89,9 +93,7 @@ const EqnNumber = styled.div`
 
 const EqnLabel = styled.div`
   grid-area: eqn-label;
-  background-color: ${props => props.theme.background};
-  color: ${props => props.theme.highlight};
-  font-family: 'Roboto-regular', sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
   font-size: 0.75em;
   text-align: left;
 `

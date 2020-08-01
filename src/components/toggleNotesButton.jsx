@@ -47,8 +47,8 @@ const ToggleNotesButton = (props) => {
 
 const ButtonStyles = styled.button`
   grid-area: notes-btn;
-  background-color: ${props => props.theme.background};
-  color: ${props => props.theme.highlight};
+  background-color: inherit;
+  color: ${props => props.theme.primary.base};
   font-size: 1em;
   border: 0;
   cursor: pointer;
@@ -56,11 +56,11 @@ const ButtonStyles = styled.button`
   padding: 0;
   &:hover {
     .icon-container {
-      background-color: ${props => props.theme.highlight};
-      color: ${props => props.theme.background};
+      background-color: ${props => props.theme.primary.base};
+      color: ${props => props.theme.background[0]};
     }
     .material-icons {
-      color: ${props => props.theme.background};
+      color: ${props => props.theme.background[0]};
     }
   }
   .flex-container {
@@ -71,7 +71,7 @@ const ButtonStyles = styled.button`
     justify-content: center;
   }
   .icon-container {
-    border: 0.2rem solid ${props => props.theme.highlight};
+    border: 0.2rem solid ${props => props.theme.primary.base};
     border-radius: 50%;
     height: 1.5em;
     width: 1.5em;
@@ -82,10 +82,10 @@ const ButtonStyles = styled.button`
   }
   .material-icons {
     font-size: 1.5em;
-    color: ${props => props.theme.highlight};
-    transition: transform 0.4s ease;
+    color: ${props => props.theme.primary.base};
+    transition: transform 0.3s ease;
     &.flipped {
-      transition: transform 0.4s ease;
+      transition: transform 0.3s ease;
       transform: rotateZ(-180deg);
     }
   }

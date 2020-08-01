@@ -1,71 +1,79 @@
 import React from 'react'
+import { Link } from 'gatsby'
 import styled from '@emotion/styled'
-import { useColorTheme } from '../context/ColorTheme'
-import MenuButton from './menuButton'
+import ThemeToggle from './themeToggle'
 import { device } from '../styles/device'
 
 
 const SiteMenu = (props) => {
-
-  const themeState = useColorTheme()
-
-  const toggleDarkMode = () => {
-    themeState.toggle()
-    props.toggleMenu()
-  } 
-
   return (
-    <SiteMenuContainer 
-      className={`site-menu ${props.menuState.isOpen ? 'visible' : 'hidden'}`} 
-      role='navigation'
-    >
-      <MenuButton 
-        buttonType='link' 
-        title={`${themeState.dark ? 'light' : 'dark'} theme`} 
-        slug={props.slug} 
-        onClick={toggleDarkMode} 
-        icon={`${themeState.dark ? 'brightness_5' : 'brightness_3'}`}
-      />
-      <MenuButton 
-        buttonType='link' 
-        title={'about'} 
-        slug={'/about/'} 
-        onClick={props.toggleMenu} 
-      />
-      <MenuButton 
-        buttonType='link' 
-        title={'contribute'} 
-        slug={'/contribute/'} 
-        onClick={props.toggleMenu} 
-      />
-      <MenuButton 
-        buttonType='external-link' 
-        title={'github'} 
-        slug={'https://github.com/R2B1/physref'} 
-      />
-    </SiteMenuContainer>
+    <MenuList>
+      <li key='theme-toggle'>
+        <ToggleContainer>
+          <ThemeToggle />
+        </ToggleContainer>
+      </li>
+      <li key='github'>
+        <a href="https://github.com/R2B1/physref" target="_blank">
+          <MenuLink>
+            GitHub
+            <i className='material-icons'>open_in_new</i>
+          </MenuLink>
+        </a>
+      </li>
+      <li key='contribute'>
+        <Link to={'/contribute/'} onClick={props.toggleMenu}>
+          <MenuLink>
+            Contribute
+          </MenuLink>
+        </Link>
+      </li>
+      <li key='about'>
+        <Link to={'/about/'} onClick={props.toggleMenu}>
+          <MenuLink>
+            About
+          </MenuLink>
+        </Link>
+      </li>
+    </MenuList>
   )
 }
 
-const SiteMenuContainer = styled.nav`
-  position: absolute;
-  left: -18rem;
-  background-color: ${props => props.theme.background};
-  height: 19.2rem;
-  width: 18rem;
-  z-index: 25;
-  &.hidden {
-    opacity: 0;
-    transform: translateX(0);
-    transition: transform 0.4s ease 0s, opacity 0s linear 0.5s;
+const MenuList = styled.ul`
+  background-color: ${props => props.theme.primary.base};
+  margin: 0;
+  padding: 0.8rem;
+  list-style-type: none;
+  width: 15rem;
+`
+
+const ToggleContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  height: 4.8rem;
+  padding: 0 0.8rem 0 0.8rem;
+`
+
+const MenuLink = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  color: ${props => props.theme.background[0]};
+  font-size: 1.8rem;
+  font-weight: bold;
+  height: 4.8rem;
+  padding: 0 0.8rem 0 0.8rem;
+  transition: all 0.2s ease;
+  .material-icons {
+    font-size: 1.8rem;
+    padding: 0 0 0 0.4rem;
   }
-  &.visible {
-    opacity: 1;
-    transform: translateX(100vw);
-    @media ${device.fullwidth} { transform: translateX(80rem); }
-    
-    transition: opacity 0s linear 0s, transform 0.4s ease .01s;
-  }
+  @media ${device.large} {
+    &:hover {
+      background-color: ${props => props.theme.primary.light};
+    }
+  }  
 `
 
 export default SiteMenu

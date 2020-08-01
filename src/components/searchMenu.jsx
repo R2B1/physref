@@ -1,7 +1,7 @@
 import React from 'react'
+import { Link } from 'gatsby'
 import { Index } from 'elasticlunr'
 import styled from '@emotion/styled'
-import MenuButton from './menuButton'
 import { device } from '../styles/device'
 
 
@@ -57,85 +57,79 @@ export default class SearchMenu extends React.Component {
 
   render() {
     return (
-      <SearchMenuContainer className={`search-container ${this.props.menuState.isOpen ? 'visible' : 'hidden'}`}>
+      <MenuList>
         <div className='input-container'>
           <i className='material-icons'>search</i>
           <input className='search-input' type='text' placeholder='search' value={this.state.query} onChange={this.search} />
         </div>
         {this.state.results.map(page => (
           <li key={page.id}>
-            <MenuButton 
-              buttonType='search-link'
-              title={page.title}
-              tags={page.matchingTags}
-              slug={page.slug} 
-              onClick={this.onSelect} 
-            />
+            <Link to={page.slug}>
+              <MenuLink onClick={this.onSelect}>
+                {page.title}
+                {page.matchingTags.length > 0 && (
+                  <span className='search-tags'>
+                    {' — ' + page.matchingTags.join(', ')}
+                  </span>
+                )}
+              </MenuLink>
+            </Link>
           </li>
         ))}
-      </SearchMenuContainer>
+      </MenuList>
     )
   }
 }
 
 
-// STYLES =============================
+const MenuLink = styled.div`
+  background-color: ${props => props.theme.background[0]};
+  color: ${props => props.theme.text[0]};
+  font-size: 1.3rem;
+  font-weight: lighter;
+  padding: 1rem 0.8rem 1rem 1.6rem;
+  .search-tags {
+    font-weight: bold;
+  }
+  @media ${device.large} {
+    &:hover {
+      color: ${props => props.theme.text[2]};
+    }
+  }  
+`
 
-const SearchMenuContainer = styled.ul`
-  position: absolute;
-  left: -32rem;
-  width: 32rem;
-  z-index: 30;
-  /* overflow: scroll; */
-  background-color: ${props => props.theme.background};
-  font-family: 'Roboto-light', sans-serif;
-  font-size: 1.6rem;
-  list-style-type: none;
+const MenuList = styled.ul`
+  background-color: ${props => props.theme.primary.base};
   margin: 0;
   padding: 0;
-  &.hidden {
-    opacity: 0;
-    transform: translateX(0);
-    transition: transform 0.4s ease 0s, opacity 0s linear 0.5s;
-  }
-  &.visible {
-    opacity: 1;
-    transform: translateX(100vw);
-    @media ${device.fullwidth} { transform: translateX(80rem); }
-    transition: opacity 0s linear 0s, transform 0.4s ease .01s;
-  }
+  list-style-type: none;
+  width: 32rem;
   a {
-    color: ${props => props.theme.highlight};
+    color: ${props => props.theme.primary.base};
     text-decoration: none;
-  }
-  li {
-    height: 6rem;
-    padding: 0;
   }
   .input-container {
     display: flex;
     align-items: center;
     border: none;
-    border-bottom: solid 1px ${props => props.theme.highlight};
     height: 4.8rem;
   }
   input {
-    background-color: ${props => props.theme.background};
+    background-color: ${props => props.theme.primary.base};
+    color: ${props => props.theme.background[0]};
     border: none;
     box-sizing: border-box;
-    color: ${props => props.theme.highlight};
-    font-family: 'Roboto-light', sans-serif;
     font-size: 1.6rem;
     margin: 0;
     outline: none;
     padding: 0.8rem 1.2rem;
     width: 100%;
     ::placeholder {
-      color: ${props => props.theme.text};
+      color: ${props => props.theme.background[0]};
     }
   }
   .material-icons {
-    color: ${props => props.theme.highlight};
+    color: ${props => props.theme.background[0]};
     font-size: 2.8rem;
     margin-left: 1.6rem;
   }

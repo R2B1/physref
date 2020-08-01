@@ -76,6 +76,7 @@ class NextButton extends React.Component {
         case 'right':
           slidesShowing = 1;
           break;
+        default:
       }
 
       if (slidesToShow > 1) {
@@ -128,6 +129,7 @@ class PagingDots extends React.Component {
       case 'right':
         lastDotIndex += slidesToShow - 1;
         break;
+      default:
     }
     if (lastDotIndex < 0) {
       return [0];
@@ -225,7 +227,7 @@ const PagingDot = styled.span`
   border-radius: 50%;
   width: 0.8rem;
   height: 0.8rem;
-  background: ${props => props.theme.highlight};
+  background: ${props => props.theme.primary.base};
 `
 
 const SliderButtonStyles = styled.button`
@@ -241,7 +243,7 @@ const SliderButtonStyles = styled.button`
   width: 3.6rem;
   .material-icons {
     font-size: 3.2rem;
-    color: ${props => props.theme.highlight};
+    color: ${props => props.theme.primary.base};
   }
   &.disabled {
     opacity: 0.3;

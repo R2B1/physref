@@ -1,15 +1,29 @@
 const themeLight = {
-  background: '#ffffff',    // white
-  text: '#22180e',          // very dark brown, rgb(34,24,14)
-  highlight: '#ff705c',     // coral, rgb(255,112,92)
-  disabledText: '#d1d1d1',  // light grey
+  primary: {
+    lightest: '#4ad6dd',
+    lighter: '#37d2d9',
+    light: '#28cad2',
+    base: '#24b8bf',
+    dark: '#20a6ac',
+    darker: '#1d9399',
+    darkest: '#198186',
+  },
+  text: ['#000000', '#4d4d4d', '#999999'],  // lighter --->
+  background:  ['#f7f7f7', '#ededed', '#e3e3e3'],  // darker --->
 }
 
 const themeDark = {
-  background: '#212729',    // very dark sky blue
-  text: '#ffffff',          // white
-  highlight: '#4BE2C7',     // aquamarine
-  disabledText: '#3a464a',  // dark sky blue
+  primary: {
+    lightest: '#c7f7fe',
+    lighter: '#a5f2fd',
+    light: '#83eefc',
+    base: '#61e9fb',
+    dark: '#3fe4fa',
+    darker: '#1de0f9',
+    darkest: '#06d3ee',
+  },
+  text: ['#f7f7f7', '#dedede', '#c4c4c4'],  // darker --->
+  background: ['#20232a', '#303540', '#3a414f'],  // lighter --->
 }
 
 const theme = mode => (mode === 'dark' ? themeDark : themeLight)

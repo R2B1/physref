@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { MDXProvider } from '@mdx-js/react'
 import styled from '@emotion/styled'
 import Header from '../components/header'
+import NavMenu from '../components/navMenu'
 import Section from '../components/section'
 import { device } from '../styles/device'
 import '../styles/globalStyles.scss'
@@ -13,18 +14,17 @@ const Layout = (props) => {
   return (
     <ColorThemeWrapper>
       <GridContainer>
-        <LeftPadding />
-        <PageWrapper>
+        <HeaderContainer>
           <Header slug={props.location.pathname} />
-          <MDXProvider
-            components={{
-              h2: Section,
-            }}
-          >
+        </HeaderContainer>
+        <ContentContainer>
+          <MDXProvider components={{ h2: Section }}>
             {props.children}
           </MDXProvider>
-        </PageWrapper>
-        <RightPadding />
+        </ContentContainer>
+        <NavContainer>
+          <NavMenu />
+        </NavContainer>
       </GridContainer>
     </ColorThemeWrapper>
   )
@@ -37,45 +37,56 @@ Layout.propTypes = {
 
 
 const ColorThemeWrapper = styled.div`
-  background-color: ${props => props.theme.background};
-  color: ${props => props.theme.text};
+  background-color: ${props => props.theme.background[0]};
+  color: ${props => props.theme.text[0]};
   min-height: 100vh;
 `
 
 const GridContainer = styled.div`
   display: grid;
-  grid-template-columns: auto auto auto;
-  @media ${device.fullwidth} {
-    grid-template-columns: auto 80rem auto;
-  }
+  grid-template-rows: 6rem 1fr;
+  grid-template-columns: 1fr minmax(0, 80rem) 1fr;
   grid-template-areas:
-    'left-padding page-wrapper right-padding';
-  min-height: 100vh;
-  height: 100%;
+    '. header .'
+    '. content .';
+  @media ${device.large} {
+    grid-template-columns: 1fr minmax(0, 80rem) 24.1rem 1fr;
+    grid-template-areas:
+      '. header header .'
+      '. content nav .';
+  }
+  @media ${device.fullwidth} {
+    grid-template-columns: 1fr 80rem 28.1rem 1fr;
+  }
 `
 
-const PageWrapper = styled.div`
+const HeaderContainer = styled.div`
+  grid-area: header;
+  position: sticky;
+  top: 0;
+  border-bottom: 1px solid ${props => props.theme.background[1]};
+  height: 6.1rem;
+  z-index: 50;
+`
+
+const ContentContainer = styled.div`
   position: relative;
-  grid-area: page-wrapper;
+  grid-area: content;
   max-width: 80rem;
-  font-family: 'Roboto-regular', sans-serif;
   font-size: 1.4rem;
   @media ${device.small}  { font-size: 1.6rem; }
-  @media ${device.medium} { font-size: 1.6rem; }
-  @media ${device.large} { font-size: 1.8rem; }
-  @media ${device.fullwidth}  { font-size: 2.0rem; }
+  @media ${device.xlarge} { font-size: 1.8rem; }
 `
 
-const LeftPadding = styled.div`
-  grid-area: left-padding;
-  background-color: ${props => props.theme.background};
-  z-index: 50;
-`
-
-const RightPadding = styled.div`
-  grid-area: right-padding;
-  background-color: ${props => props.theme.background};
-  z-index: 50;
+const NavContainer = styled.div`
+  @media ${device.large} {
+    grid-area: nav;
+    position: sticky;
+    top: calc(6rem + 2.4rem);
+    height: calc(100vh - 6rem);
+    overflow: auto;
+    margin: 2.4rem 0 0 0;
+  }
 `
 
 export default Layout

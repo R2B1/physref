@@ -85,7 +85,6 @@ export default function CommonPage(props) {
       {mdx.frontmatter.title !== '' && <h1 className='page-title'>{mdx.frontmatter.title}</h1>}
       <TableOfContents className='toc-list' />
       <MDXRenderer>{mdx.body}</MDXRenderer>
-      <hr/>
       <CommonFooter>
         <a href='https://github.com/R2B1/physref'>Edit this page on GitHub</a>
         <br/><br/><br/>
@@ -102,7 +101,7 @@ const TableOfContents = styled.ol`
     list-style-type: none;
     position: relative;
     &::before {
-      color: ${props => props.theme.highlight};
+      color: ${props => props.theme.primary.base};
       content: counter(list) '.';
       position: absolute;
       left: -1.25em;

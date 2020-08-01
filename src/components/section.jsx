@@ -9,7 +9,7 @@ const Section = props => {
 
   return (
     <>
-      <hr/>
+      {/* <hr/> */}
       <a className='section-anchor' name={linkName}></a>
       <h2>{title}</h2>
     </>
