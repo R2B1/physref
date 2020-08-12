@@ -82,7 +82,7 @@ module.exports = {
         background_color: `#f7f7f7`,
         theme_color: `#24b8bf`,
         display: `standalone`,
-        icon: `src/images/icons/physref-icon.png`,
+        icon: `src/images/icons/physref-icon.svg`,
       },
     },
     `gatsby-plugin-offline`,
