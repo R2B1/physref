@@ -37,8 +37,8 @@ const CommonPageStyles = styled.div`
   }
   h1 {
     font-size: 2.0em;
-    margin: 0 0 1em 0;
-    padding: 0;
+    margin: 0;
+    padding: 1em 0;
   }
   h2 {
     font-size: 1.5em;
@@ -56,10 +56,10 @@ const CommonPageStyles = styled.div`
     padding: 1em 0 0.5em 0;
   }
   hr {
-    background: ${props => props.theme.primary.base};
+    background: ${props => props.theme.background[1]};
     border: 0;
     height: 1px;
-    margin: 1.25em 0 2.5em 0;
+    margin: 2em 0;
   }
   ol {
     font-size: 1.6rem;
@@ -100,6 +100,7 @@ const CommonPageStyles = styled.div`
     white-space: pre-wrap;
   }
   table {
+    display: block;
     margin: 0.5em 0;
     th {
       padding-right: 0.5em;

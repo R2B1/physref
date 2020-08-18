@@ -1,35 +1,291 @@
 ---
-title: "Fundamental constants (WIP)"
+title: "Frequently used fundamental constants"
 tags: [
-  "speed of light",
-  "gravitational constant",
-  "Avogadro's number",
-  "gas constant",
-  "Boltzmann's constant",
-  "electron charge",
-  "Stefan Boltzmann constant",
-  "permittivity of free space",
-  "permeability of free space",
-  "Planck's constant",
-  "electron rest mass",
-  "proton rest mass",
-  "neutron rest mass",
+  "speed of light in vacuum",
+  "Newtonian constant of gravitation",
+  "Planck constant",
+  "elementary charge",
+  "vacuum electric permittivity",
+  "vacuum magnetic permeability",
+  "Josephson constant",
+  "von Klitzing constant",
+  "magnetic flux quantum",
+  "conductance quantum",
+  "electron mass",
+  "proton mass",
+  "proton-electron mass ratio",
+  "fine-structure constant",
+  "Rydberg frequency",
+  "Boltzmann constant",
+  "Avogadro constant",
+  "molar gas constant",
+  "Faraday constant",
+  "Stefan-Boltzmann constant",
+  "Bohr magneton",
+  "nuclear magneton",
+  "electron volt",
+  "atomic mass unit",
 ]
 ---
 
-||
-:--- | ---: | :---
-speed of light in vacuum    |  $c=$             |  $2.99792 \times 10^{8}$ m/s
-gravitational constant      |  $G=$             |  $6.67408 \times 10^{-11}$ N m$^2$/kg$^2$
-Avogadro's number           |  $N_{\text{A}}=$  |  $6.02214 \times 10^{23}$ mol$^{-1}$
-gas constant                |  $R=$             |  $8.31446$ J/mol$\cdot$K
-Boltzmann's const. $R/N_{\text{A}}$ |  $k_{\text{B}}=$  |  $1.38065 \times 10^{-23}$ J/K
-electron charge             |  $e=$             |  $1.60218 \times 10^{-19}$ C
-Stefan-Boltzmann constant   |  $\sigma=$        |  $5.67037 \times 10^{-8}$ W/m$^2$K$^4$
-permittivity of free space  |  $\varepsilon_0=$ |  $8.85419 \times 10^{-12}$ F/m
-permeability of free space  |  $\mu_0=$         |  $4 \pi \times 10^{-7}$ N/A$^2$
-Planck's constant           |  $h=$             |  $6.63 \times 10^{-34}$ J s
-reduced Planck constant     |  $\hbar=$         |  $1.05 \times 10^{-34}$ J s
-electron rest mass          |  $m_e=$           |  $9.11 \times 10^{-31}$ kg
-proton rest mass            |  $m_p=$           |  $1.6726 \times 10^{-27}$ kg
-neutron rest mass           |  $m_n=$           |  $1.6749 \times 10^{-27}$ kg
+import Constant from "components/constant"
+
+Numbers in parentheses indicate the one-standard-deviation uncertainty in the last two digits of the value. Values without parentheses or a trailing ellipsis (...) are exact.
+
+---
+
+<Constant 
+  name="speed of light in vacuum"
+  symbol="c"
+  value="299 792 458"
+  units={{ m:1, s:-1 }}
+/>
+
+<Constant 
+  name="Newtonian constant of gravitation"
+  symbol="G"
+  value="6.674 30(15)"
+  exponent="-11"
+  units={{ m:3, kg:-1, s:-2 }}
+/>
+
+<Constant 
+  name="Planck constant"
+  symbol="h"
+  value="6.626 070 15"
+  exponent="-34"
+  uncertainty=""
+  units={{ J:1, Hz:-1 }}
+/>
+
+<Constant 
+  name=""
+  symbol="h"
+  value="4.135 667 696..."
+  exponent="-15"
+  units={{ eV:1, Hz:-1 }}
+/>
+
+<Constant 
+  name=""
+  symbol="\hbar"
+  factors="\frac{h}{2 \pi}"
+  value="1.054 571 817..."
+  exponent="-34"
+  units={{ J:1, s:1 }}
+/>
+
+<Constant 
+  name=""
+  symbol="\hbar"
+  value="6.582 119 569..."
+  exponent="-16"
+  units={{ eV:1, s:1 }}
+/>
+
+<Constant 
+  name="elementary charge"
+  symbol="e"
+  factors=""
+  value="1.602 176 634"
+  exponent="-19"
+  units={{ C:1 }}
+/>
+
+<Constant 
+  name="vacuum electric permittivity"
+  factors="\frac{1}{\mu_0 c^2}"
+  symbol="\epsilon_0"
+  value="8.854 187 812 8(13)"
+  exponent="-12"
+  units={{ F:1, m:-1 }}
+/>
+
+<Constant 
+  name="vacuum magnetic permeability"
+  factors="\frac{4 \pi \alpha \hbar}{e^2 c}"
+  symbol="\mu_0"
+  value="1.256 637 062 12(19)"
+  exponent="-6"
+  units={{ N:1, A:-2 }}
+/>
+
+<Constant 
+  name="Josephson constant"
+  factors="\frac{2 e}{h}"
+  symbol="K_{\text{J}}"
+  value="483 597.848 4..."
+  exponent="9"
+  units={{ Hz:1, V:-1 }}
+/>
+
+<Constant 
+  name="von Klitzing constant"
+  factors="\frac{\mu_0 c}{2 \alpha} = \frac{2 \pi \hbar}{e^2}"
+  symbol="R_{\text{K}}"
+  value="25 812.807 45..."
+  units={{ Ω:1 }}
+/>
+
+<Constant 
+  name="magnetic flux quantum"
+  symbol="\varPhi_0"
+  factors="\frac{2 \pi \hbar}{(2 e)}"
+  value="2.067 833 848..."
+  exponent="-15"
+  units={{ Wb:1 }}
+/>
+
+<Constant 
+  name="conductance quantum"
+  symbol="G_0"
+  factors="\frac{2 e^2}{2 \pi \hbar}"
+  value="7.748 091 729..."
+  exponent="-5"
+  units={{ S:1 }}
+/>
+
+<Constant 
+  name="electron mass"
+  symbol="m_e"
+  value="9.109 383 7015(28)"
+  exponent="-31"
+  units={{ kg:1 }}
+/>
+
+<Constant 
+  name="proton mass"
+  symbol="m_p"
+  value="1.672 621 923 69(51)"
+  exponent="-27"
+  units={{ kg:1 }}
+/>
+
+<Constant 
+  name="proton-electron mass ratio"
+  symbol="m_p/m_e"
+  value="1836.152 673 43(11)"
+/>
+
+<Constant 
+  name="fine-structure constant"
+  symbol="\alpha"
+  factors="\frac{e^2}{4 \pi \epsilon_0 \hbar c}"
+  value="7.297 352 5693(11)"
+  exponent="-3"
+/>
+
+<Constant 
+  name="inverse fine-structure constant"
+  symbol="\alpha^{-1}"
+  value="137.035 999 084(21)"
+/>
+
+<Constant 
+  name="Rydberg frequency"
+  symbol="cR_{\infty}"
+  factors="\frac{\alpha^2 m_e c^2}{2 h}"
+  value="3.289 841 960 2508(64)"
+  exponent="15"
+  units={{ Hz:1 }}
+/>
+
+<Constant 
+  name="Boltzmann constant"
+  symbol="k"
+  factors="\frac{R}{N_{\text{A}}}"
+  value="1.380 649"
+  exponent="-23"
+  units={{ J:1, K:-1 }}
+/>
+
+<Constant 
+  name="Avogadro constant"
+  symbol="N_{\text{A}}"
+  value="6.022 140 76"
+  exponent="23"
+  units={{ mol:-1 }}
+/>
+
+<Constant 
+  name="molar gas constant"
+  symbol="R"
+  factors="N_{\text{A}} k"
+  value="8.314 462 618..."
+  units={{ J:1, mol:-1, K:-1 }}
+/>
+
+<Constant 
+  name="Faraday constant"
+  symbol="F"
+  factors="N_{\text{A}} e"
+  value="96 485.332 12..."
+  units={{ C:1, mol:-1 }}
+/>
+
+<Constant 
+  name="Stefan-Boltzmann constant"
+  symbol="\sigma"
+  factors="\frac{\pi^2 k^4}{60 \hbar^3 c^2}"
+  value="5.670 374 419"
+  exponent="-8"
+  units={{ W:1, m:-2, K:-4 }}
+/>
+
+<Constant 
+  name="Bohr magneton"
+  factors="\frac{e \hbar}{2 m_e}"
+  symbol="\mu_{\text{B}}"
+  value="9.274 010 0783(28)"
+  exponent="-24"
+  units={{ J:1, T:-1 }}
+/>
+
+<Constant 
+  name=""
+  symbol="\mu_{\text{B}}"
+  value="5.788 381 8060(17)"
+  exponent="-5"
+  units={{ eV:1, T:-1 }}
+/>
+
+<Constant 
+  name="nuclear magneton"
+  factors="\frac{e \hbar}{2 m_p}"
+  symbol="\mu_{\text{N}}"
+  value="5.050 783 7461(15)"
+  exponent="-27"
+  units={{ J:1, T:-1 }}
+/>
+
+<Constant 
+  name=""
+  symbol="\mu_{\text{N}}"
+  value="3.152 451 258 44(96)"
+  exponent="-8"
+  units={{ eV:1, T:-1 }}
+/>
+
+<Constant 
+  name="electron volt"
+  symbol="\text{eV}"
+  factors="\frac{e}{\text{C}} \text{J}"
+  value="1.602 176 634"
+  exponent="-19"
+  units={{ J:1 }}
+/>
+
+<Constant 
+  name="(unifited) atomic mass unit"
+  symbol="\text{u}"
+  factors="\frac{m}{12}(^{12}\text{C})"
+  value="1.660 539 066 60(50)"
+  exponent="-27"
+  units={{ kg:1 }}
+/>
+
+---
+
+### References
+
+* [2018 CODATA adjustment of the fundamental constants.](https://physics.nist.gov/cuu/Constants/index.html) The NIST Reference on Constants, Units, and Uncertainty.

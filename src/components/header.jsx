@@ -16,7 +16,6 @@ const SEARCH_INDEX_QUERY = graphql`
 `
 
 const Header = (props) => {
-  console.log(props.slug)
   const queryData = useStaticQuery(SEARCH_INDEX_QUERY)
 
   const [showSearchMenu, setShowSearchMenu] = React.useState(false)
@@ -29,14 +28,12 @@ const Header = (props) => {
     } else {
       switch (menuType) {
         case 'search':
-          console.log('search menu is opening')
           setShowSearchMenu(true)
           setShowSiteMenu(false)
           document.querySelector('.search-input').focus()
           break
         case 'site':
         default:
-          console.log('site menu is opening')
           setShowSiteMenu(true)
           setShowSearchMenu(false)
       }

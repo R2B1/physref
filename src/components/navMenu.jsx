@@ -185,7 +185,6 @@ const NavMenu = () => {
   const menuTree = React.useMemo(() => {
     const menuTree = buildMenuTree(queryData.allMdx.edges)
     sortMenuByPriority(menuTree)
-    console.log(menuTree)
     return menuTree
   }, [])
 

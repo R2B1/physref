@@ -112,5 +112,5 @@ const TableOfContents = styled.ol`
 `
 
 const CommonFooter = styled.footer`
-  padding-top: 0.8rem;
+  padding: 3.2rem 0;
 `
