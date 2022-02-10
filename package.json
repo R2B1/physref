@@ -31,7 +31,7 @@
     "gatsby-transformer-remark": "^2.7.1",
     "gatsby-transformer-sharp": "^2.4.3",
     "katex": "^0.11.1",
-    "node-sass": "^4.13.1",
+    "node-sass": "^7.0.0",
     "nuka-carousel": "^4.6.6",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
